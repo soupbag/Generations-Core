@@ -28,14 +28,12 @@ import java.util.Set;
 public class ShapedRksRecipe extends RksRecipe {
     public final int width;
     public final int height;
-    public final NonNullList<GenerationsIngredient> recipeItems;
 
     public ShapedRksRecipe(ResourceLocation id, String group, int width, int height, NonNullList<GenerationsIngredient> recipeItems, RksResult<?> result, boolean consumesTimeCapsules, SpeciesKey key, float experience, int processingTime, boolean showNotification) {
-        super(id, group, result, consumesTimeCapsules, key, experience, processingTime, showNotification);
+        super(id, group, result, recipeItems, consumesTimeCapsules, key, experience, processingTime, showNotification);
 
         this.width = width;
         this.height = height;
-        this.recipeItems = recipeItems;
     }
 
     public static NonNullList<GenerationsIngredient> dissolvePattern(String[] pattern, Map<String, GenerationsIngredient> keys, int patternWidth, int patternHeight) {
@@ -229,29 +227,18 @@ public class ShapedRksRecipe extends RksRecipe {
 
         @Override
         public @NotNull ShapedRksRecipe fromNetwork(@NotNull ResourceLocation recipeId, FriendlyByteBuf buffer) {
-            int i = buffer.readVarInt();
-            int j = buffer.readVarInt();
-            String string = buffer.readUtf();
-            NonNullList<GenerationsIngredient> nonNullList = NonNullList.withSize(i * j, GenerationsIngredient.EmptyIngredient.INSTANCE);
-            nonNullList.replaceAll(ignored -> GenerationsIngredidents.fromNetwork(buffer));
-
-
+            var width = buffer.readVarInt();
+            var height = buffer.readVarInt();
+            var group = buffer.readUtf();
             var result = RksResultType.RKS_RESULT.get(buffer.readResourceLocation()).fromBuffer().apply(buffer);
-
+            var recipeItems = buffer.readCollection(NonNullList::createWithCapacity, GenerationsIngredidents::fromNetwork);
             var consumesTimeCapsules = buffer.readBoolean();
+            var key = buffer.readNullable(TimeCapsuleIngredientKt::readSpeciesKey);
+            var experience = buffer.readFloat();
+            var processingTime = buffer.readInt();
+            var showNotification = buffer.readBoolean();
 
-            var speciesKey = buffer.readNullable(buf -> {
-                var location = buf.readResourceLocation();
-                var aspects = buf.readNullable((FriendlyByteBuf.Reader<Set<String>>) buf1 -> buf1.readCollection(HashSet::new, FriendlyByteBuf::readUtf));
-
-                return new SpeciesKey(location, aspects);
-            });
-
-            float experience = buffer.readFloat();
-            int weavingTime = buffer.readInt();
-            boolean bl = buffer.readBoolean();
-
-            return new ShapedRksRecipe(recipeId, string, i, j, nonNullList, result, consumesTimeCapsules, speciesKey, experience, weavingTime, bl);
+            return new ShapedRksRecipe(recipeId, group, width, height, recipeItems, result, consumesTimeCapsules, key, experience, processingTime, showNotification);
         }
 
         @Override
@@ -259,20 +246,10 @@ public class ShapedRksRecipe extends RksRecipe {
             buffer.writeVarInt(recipe.width);
             buffer.writeVarInt(recipe.height);
             buffer.writeUtf(recipe.group);
-
-            for (GenerationsIngredient generationsIngredient : recipe.recipeItems) {
-                GenerationsIngredidents.toNetwork(buffer, generationsIngredient);
-            }
-
             recipe.result.toBuffer(buffer);
-
+            buffer.writeCollection(recipe.recipeItems, GenerationsIngredidents::toNetwork);
             buffer.writeBoolean(recipe.consumesTimeCapsules);
-
-            buffer.writeNullable(recipe.key, (buf, speciesKey) -> {
-                buffer.writeResourceLocation(speciesKey.species());
-                buffer.writeNullable(speciesKey.aspects(), (buf1, strings) -> buf1.writeCollection(strings, FriendlyByteBuf::writeUtf));
-            });
-
+            buffer.writeNullable(recipe.key, TimeCapsuleIngredientKt::writeSpeciesKey);
             buffer.writeFloat(recipe.experience());
             buffer.writeInt(recipe.processingTime());
             buffer.writeBoolean(recipe.showNotification);
