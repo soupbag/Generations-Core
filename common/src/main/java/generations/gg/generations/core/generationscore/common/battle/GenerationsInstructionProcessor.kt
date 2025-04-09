@@ -1,5 +1,6 @@
 package generations.gg.generations.core.generationscore.common.battle
 
+import com.cobblemon.mod.common.api.abilities.Ability
 import com.cobblemon.mod.common.api.battles.interpreter.BattleMessage
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
@@ -17,6 +18,8 @@ import com.mojang.datafixers.util.Unit
 import generations.gg.generations.core.generationscore.common.util.getProviderOrNull
 
 object GenerationsInstructionProcessor {
+    private var originalAbility: Ability? = null
+
     @JvmStatic
     fun processDetailsChange(battle: PokemonBattle, message: BattleMessage) {
         val s1 = message.argumentAt(1) ?: return
@@ -29,6 +32,8 @@ object GenerationsInstructionProcessor {
         val battlePokemon = message.battlePokemon(0, battle) ?: return
 
         val name = s3[1]
+
+        originalAbility = battlePokemon.originalPokemon.ability
 
         var pair: Pair<String, Any> = when(name) {
             "mega" -> "mega" to true
@@ -77,8 +82,23 @@ object GenerationsInstructionProcessor {
         battle.actors.forEach { actor ->
             if (!actor.getPlayerUUIDs().iterator().hasNext()) return@forEach
             actor.pokemonList.forEach { battlePokemon ->
+                val tempAbility = battlePokemon.originalPokemon.ability
+
+                val data = battlePokemon.effectedPokemon.persistentData
+                val name = if(data.contains("form_name")) data.getString("form_name") else return
+                
                 battlePokemon.originalPokemon.removeBattleFeature()
                 battlePokemon.effectedPokemon.removeBattleFeature()
+
+                if (name == "mega" || name == "mega_x" || name == "mega_y") {
+                    if (tempAbility != originalAbility) {
+                        originalAbility?.let { ability ->
+                            battlePokemon.originalPokemon.updateAbility(ability)
+                        } ?: run {
+                            println("Original Ability is null")
+                        }
+                    }
+                }
 
 //                sequenceOf("mega", "mega_x", "mega_y", "primal", "stellar", "terastal", "hero", "hangry", "meteor", "blade", "pirouette", "sunny", "schooling", "ash", "busted").forEach { name ->
 //                    battlePokemon.effectedPokemon.features.removeIf { it.name == name }
