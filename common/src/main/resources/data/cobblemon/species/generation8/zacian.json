@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 888,
   "name": "Zacian",
   "primaryType": "fairy",
@@ -156,9 +157,6 @@
       "weight": 3550,
       "pokedex": [
         "cobblemon.species.zacian-crowned.desc"
-      ],
-      "moves": [
-        "form_change:behemothblade"
       ],
       "labels": [
         "gen8",

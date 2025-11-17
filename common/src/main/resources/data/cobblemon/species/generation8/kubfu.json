@@ -1,10 +1,25 @@
 {
-  "name": "Kubfu",
+  "implemented": true,
   "nationalPokedexNumber": 891,
+  "name": "Kubfu",
   "primaryType": "fighting",
+  "maleRatio": 0.875,
+  "height": 6,
+  "weight": 120,
+  "pokedex": [
+    "cobblemon.species.kubfu.desc"
+  ],
+  "labels": [
+    "gen8",
+    "legendary"
+  ],
+  "aspects": [],
   "abilities": [
     "innerfocus",
-    "h:noguard"
+    "h:innerfocus"
+  ],
+  "eggGroups": [
+    "undiscovered"
   ],
   "baseStats": {
     "hp": 60,
@@ -14,18 +29,28 @@
     "special_defence": 50,
     "speed": 72
   },
-  "catchRate": 3,
-  "maleRatio": 0.875,
-  "shoulderMountable": false,
+  "evYield": {
+    "hp": 0,
+    "attack": 1,
+    "defence": 0,
+    "special_attack": 0,
+    "special_defence": 0,
+    "speed": 0
+  },
   "baseExperienceYield": 77,
   "experienceGroup": "slow",
+  "catchRate": 3,
   "eggCycles": 120,
-  "eggGroups": [
-    "undiscovered"
-  ],
+  "baseFriendship": 50,
+  "baseScale": 1,
+  "hitbox": {
+    "width": 1,
+    "height": 1,
+    "fixed": false
+  },
   "moves": [
-    "1:leer",
     "1:rocksmash",
+    "1:leer",
     "4:endure",
     "8:focusenergy",
     "12:aerialace",
@@ -41,7 +66,6 @@
     "52:focuspunch",
     "tm:acrobatics",
     "tm:aerialace",
-    "tm:attract",
     "tm:bodyslam",
     "tm:brickbreak",
     "tm:bulkup",
@@ -54,6 +78,7 @@
     "tm:fling",
     "tm:focusenergy",
     "tm:focuspunch",
+    "tm:headbutt",
     "tm:helpinghand",
     "tm:icepunch",
     "tm:ironhead",
@@ -67,10 +92,9 @@
     "tm:retaliate",
     "tm:revenge",
     "tm:reversal",
-    "tm:round",
+    "tm:rocksmash",
     "tm:scaryface",
     "tm:sleeptalk",
-    "tm:snore",
     "tm:substitute",
     "tm:superpower",
     "tm:swordsdance",
@@ -80,79 +104,44 @@
     "tm:uturn",
     "tm:workup",
     "tm:zenheadbutt",
-    "tutor:coaching",
-    "tutor:endure",
+    "tutor:aerialace",
+    "tutor:bulkup",
+    "tutor:firepunch",
     "tutor:focusenergy",
-    "tutor:leer",
-    "tutor:rocksmash"
-  ],
-  "labels": [
-    "gen8",
-    "legendary"
-  ],
-  "pokedex": [
-    "cobblemon.species.kubfu.desc"
+    "tutor:focuspunch",
+    "tutor:helpinghand",
+    "tutor:icepunch",
+    "tutor:ironhead",
+    "tutor:lowkick",
+    "tutor:rest",
+    "tutor:rocksmash",
+    "tutor:sleeptalk",
+    "tutor:superpower",
+    "tutor:thunderpunch",
+    "tutor:zenheadbutt"
   ],
   "evolutions": [
     {
-      "id": "kubfu_urshifu1",
-      "variant": "level_up",
-      "result": "urshifu rapid-strike",
-      "consumeHeldItem": false,
-      "learnableMoves": [
-        "surgingstrikes"
-      ],
-      "requirements": [
-        {
-          "variant": "level",
-          "minLevel": 32
-        },
-        {
-          "variant": "time_range",
-          "range": "day"
-        }
-      ]
-    },
-    {
-      "id": "kubfu_urshifu2",
-      "variant": "level_up",
-      "result": "urshifu",
-      "consumeHeldItem": false,
+      "id": "kubfu_urshifu",
+      "variant": "item_interact",
+      "result": "urshifu wushu_style=single_strike",
+      "consumeHeldItem": true,
       "learnableMoves": [
         "wickedblow"
       ],
-      "requirements": [
-        {
-          "variant": "level",
-          "minLevel": 32
-        },
-        {
-          "variant": "time_range",
-          "range": "night"
-        }
-      ]
+      "requirements": [],
+      "requiredContext": "cobblemon:dusk_stone"
+    },
+    {
+      "id": "kubfu_urshifurapidstrike",
+      "variant": "item_interact",
+      "result": "urshifu wushu_style=rapid_strike",
+      "consumeHeldItem": true,
+      "learnableMoves": [
+        "surgingstrikes"
+      ],
+      "requirements": [],
+      "requiredContext": "cobblemon:water_stone"
     }
-
-
-  ],
-  "baseScale": 1,
-  "hitbox": {
-    "width": 1,
-    "height": 1,
-    "fixed": false
-  },
-  "baseFriendship": 50,
-  "evYield": {
-    "hp": 0,
-    "attack": 1,
-    "defence": 0,
-    "special_attack": 0,
-    "special_defence": 0,
-    "speed": 0
-  },
-  "height": 6,
-  "weight": 120,
-  "aspects": [],
-  "cannotDynamax": false,
-  "implemented": true
+  ]
 }
