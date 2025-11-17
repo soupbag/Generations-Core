@@ -1,0 +1,172 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ability_patch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:air_balloon"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:charti_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chilan_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:choice_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:destiny_knot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_xs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:fighting_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:grass_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:leftovers"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:master_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:park_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pp_max"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rock_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:spelon_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_defence"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_otherside"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:serious_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lonely_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:brave_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:adamant_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:naughty_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:bold_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:relaxed_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:impish_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:gentle_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lax_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:timid_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hasty_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:jolly_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:naive_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:modest_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:quiet_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rash_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:mild_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:calm_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sassy_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:careful_mint"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "generations_core:chests/park_ball"
+}

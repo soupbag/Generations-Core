@@ -1,0 +1,248 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:absorb_bulb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:awakening"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:berry_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:black_belt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:black_sludge"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:bluk_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:blunder_policy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:burn_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:calcium"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cell_battery"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:charcoal_stick"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cheri_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cheri_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chipped_pot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:choice_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:clover_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cornn_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:deep_sea_tooth"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dire_hit"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dragon_fang"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dream_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dusk_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:eject_pack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_l"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:expert_belt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:fast_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:flame_orb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:full_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:full_restore"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ghost_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:heal_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:heavy_duty_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:kee_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:kelpsy_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:magnet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_elixir"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_revive"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:never_melt_ice"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:normal_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_weight"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pp_up"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rare_candy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:room_service"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sharp_beak"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:soft_sand"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:super_potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:throat_spray"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ultra_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:weakness_policy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:saddle"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_wait"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:amethyst_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:surprise_mulch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:growth_mulch"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/ultra_ball"
+}

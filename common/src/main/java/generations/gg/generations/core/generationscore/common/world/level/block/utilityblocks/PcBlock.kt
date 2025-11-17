@@ -11,18 +11,15 @@ import com.cobblemon.mod.common.util.isInBattle
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.toVec3d
-import dev.architectury.registry.registries.RegistrySupplier
-import generations.gg.generations.core.generationscore.common.world.level.block.entities.MutableBlockEntityType
+import generations.gg.generations.core.generationscore.common.client.render.rarecandy.instanceOrNull
 import generations.gg.generations.core.generationscore.common.world.level.block.entities.PcBlockEntity
 import generations.gg.generations.core.generationscore.common.world.level.block.generic.GenericRotatableModelBlock
 import net.minecraft.core.BlockPos
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.InteractionResult.SUCCESS
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity
@@ -35,32 +32,26 @@ import net.minecraft.world.level.pathfinder.PathComputationType
 import net.minecraft.world.phys.BlockHitResult
 import java.util.*
 
-abstract class PcBlock<T : PcBlockEntity<T>, V : PcBlock<T, V>>(
-    type: RegistrySupplier<MutableBlockEntityType<T>>,
+abstract class PcBlock<T : PcBlockEntity>(
     private val blockEntityClass: Class<T>,
     arg: Properties,
     model: ResourceLocation,
     width: Int = 0,
     height: Int = 0,
     length: Int = 0
-) : GenericRotatableModelBlock<T>(arg, type, model, width, height, length) {
+) : GenericRotatableModelBlock(arg, model = model, width = width, height = height, length = length) {
     override fun createDefaultState(): BlockState {
         return super.createDefaultState().setValue(ON, false)
     }
 
-    override fun isPathfindable(
-        blockState: BlockState,
-        blockGetter: BlockGetter,
-        blockPos: BlockPos,
-        pathComputationType: PathComputationType
-    ): Boolean = false
+    override fun isPathfindable(state: BlockState, pathComputationType: PathComputationType): Boolean = false
 
-    override fun use(
+
+    override fun useWithoutItem(
         blockState: BlockState,
         world: Level,
         blockPos: BlockPos,
         player: Player,
-        hand: InteractionHand,
         hit: BlockHitResult
     ): InteractionResult {
         if (player !is ServerPlayer) return SUCCESS
@@ -78,7 +69,7 @@ abstract class PcBlock<T : PcBlockEntity<T>, V : PcBlock<T, V>>(
             return SUCCESS
         }
 
-        val pc = Cobblemon.storage.getPC(player.uuid)
+        val pc = Cobblemon.storage.getPC(player)
         // TODO add event to check if they can open this PC?
         PCLinkManager.addLink(ProximityPCLink(blockEntityClass, pc, player.uuid, blockEntityClass.cast(baseEntity)))
         OpenPCPacket(pc.uuid).sendToPlayer(player)
@@ -91,9 +82,9 @@ abstract class PcBlock<T : PcBlockEntity<T>, V : PcBlock<T, V>>(
         return SUCCESS
     }
 
-    override fun <T : BlockEntity> getTicker(world: Level, blockState: BlockState, BlockWithEntityType: BlockEntityType<T>) =  createTickerHelper(BlockWithEntityType, blockEntityFunction.get(), getTicker())
+    override fun <T : BlockEntity> getTicker(world: Level, blockState: BlockState, BlockWithEntityType: BlockEntityType<T>) =  createTickerHelper(BlockWithEntityType, blockEntityType.value() as BlockEntityType<PcBlockEntity>, getTicker())
 
-    abstract fun getTicker() :BlockEntityTicker<T>
+    abstract fun getTicker() :BlockEntityTicker<PcBlockEntity>
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
         super.createBlockStateDefinition(builder.add(ON))
@@ -104,14 +95,14 @@ abstract class PcBlock<T : PcBlockEntity<T>, V : PcBlock<T, V>>(
 
         fun lumiance(state: BlockState): Int {
             return try {
-                if (state.getValue(ON) && state.getValue((state.block as GenericRotatableModelBlock<*>).heightProperty) == 1) 10 else 0
+                if (state.getValue(ON) && (state.block.instanceOrNull<GenericRotatableModelBlock>()?.lengthProperty?.let { state.getValue(it) } ?: 0) == 1) 10 else 0
             } catch (e: IllegalArgumentException) {
                 0
             }
         }
     }
 
-    class ProximityPCLink<T : PcBlockEntity<T>>(
+    class ProximityPCLink<T : PcBlockEntity>(
         val clazz: Class<T>,
         pc: PCStore,
         playerID: UUID,

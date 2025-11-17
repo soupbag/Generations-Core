@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.util.asTranslated
 import com.cobblemon.mod.common.util.party
 import generations.gg.generations.core.generationscore.common.util.*
 import net.minecraft.ChatFormatting
+import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundEvent
@@ -43,7 +44,7 @@ class ReinsOfUnityItem(properties: Properties): PokemonStoringItem(properties) {
                     val list = mutableListOf<Component>()
                     list.add(pokemon)
                     stack.setLore(list)
-                    stack.setHoverName(super.getName(stack).copy() + getPokemonText(stack))
+                    stack.set(DataComponents.ITEM_NAME, super.getName(stack).copy().append(getPokemonText(stack)))
 
                     player.level().playSound(null, entity, SoundEvents.ENDERMAN_TELEPORT, SoundSource.MASTER, 1.0f, 1.0f)
 
@@ -58,7 +59,7 @@ class ReinsOfUnityItem(properties: Properties): PokemonStoringItem(properties) {
 
                 val move = getFormAndMove(dembeded)?.second?.also { entity.pokemon.removeMove(it) } ?: return false
 
-                val provider = entity.pokemon.getProviderOrNull<ChoiceSpeciesFeatureProvider>("calyrex_rider") ?: return false
+                val provider = entity.pokemon.getProviderOrNull<ChoiceSpeciesFeatureProvider>("king_steed") ?: return false
                 val feature = provider.getOrCreate(entity.pokemon)
 
                 feature.value = "false"
@@ -75,7 +76,7 @@ class ReinsOfUnityItem(properties: Properties): PokemonStoringItem(properties) {
             }
         } else if (pokemon.isSpecies("calyrex")) {
 
-            val provider = entity.pokemon.getProviderOrNull<ChoiceSpeciesFeatureProvider>("calyrex_rider") ?: return false
+            val provider = entity.pokemon.getProviderOrNull<ChoiceSpeciesFeatureProvider>("king_steed") ?: return false
             val feature = provider.getOrCreate(entity.pokemon)
 
             if (!entity.pokemon.hasEmbeddedPokemon()) {

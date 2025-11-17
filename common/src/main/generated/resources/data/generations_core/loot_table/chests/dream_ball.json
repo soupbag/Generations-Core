@@ -1,0 +1,200 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:awakening"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:big_root"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cell_battery"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chesto_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:clover_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cracked_pot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dragon_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dream_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dusk_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_l"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:fairy_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:iapapa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:kebia_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:light_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:mystic_water"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:normal_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:paralyze_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:payapa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:persim_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poison_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_lens"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:psychic_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:razor_claw"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:razor_fang"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:red_card"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:room_service"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:roseli_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:scope_lens"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:silk_scarf"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sitrus_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:throat_spray"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:thunder_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:twisted_spoon"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:upgrade"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:whipped_dream"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:wide_lens"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_accuracy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:purpur_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:slime_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:ghast_tear"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:crimson_fungus"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_blocks"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:relaxed_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:impish_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:gentle_mint"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/dream_ball"
+}

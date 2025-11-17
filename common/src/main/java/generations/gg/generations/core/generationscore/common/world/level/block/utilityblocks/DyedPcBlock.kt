@@ -11,19 +11,22 @@ import com.cobblemon.mod.common.util.isInBattle
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.toVec3d
-import dev.architectury.registry.registries.RegistrySupplier
+import com.mojang.serialization.MapCodec
 import generations.gg.generations.core.generationscore.common.world.level.block.GenerationsVoxelShapes.generateRotationalVoxelShape
+import generations.gg.generations.core.generationscore.common.world.level.block.asValue
 import generations.gg.generations.core.generationscore.common.world.level.block.entities.DyedPcBlockEntity
 import generations.gg.generations.core.generationscore.common.world.level.block.entities.GenerationsBlockEntities
 import generations.gg.generations.core.generationscore.common.world.level.block.entities.GenerationsBlockEntityModels
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
+import net.minecraft.core.Holder
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
-import net.minecraft.world.InteractionResult
-import net.minecraft.world.InteractionResult.SUCCESS
+import net.minecraft.world.ItemInteractionResult
+import net.minecraft.world.ItemInteractionResult.SUCCESS
 import net.minecraft.world.item.DyeColor
+import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
@@ -39,7 +42,7 @@ import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
 import java.util.*
 
-open class DyedPcBlock(color: DyeColor, map: Map<DyeColor, RegistrySupplier<DyedPcBlock>>, arg: Properties) : DyeableBlock<DyedPcBlockEntity, DyedPcBlock>(color, map, GenerationsBlockEntities.DYED_PC, arg, GenerationsBlockEntityModels.PC, 0, 1, 0) {
+class DyedPcBlock(properties: Properties, color: DyeColor, map: Map<DyeColor, Holder<Block>>) : DyeableBlock(properties, color, map, GenerationsBlockEntityModels.PC, 0, 1, 0) {
     private val SHAPE = generateRotationalVoxelShape(
         Shapes.or(
             Shapes.box(0.07500000000000001, 0.0, 0.025000000000000022, 0.925, 1.5, 0.725),
@@ -52,39 +55,40 @@ open class DyedPcBlock(color: DyeColor, map: Map<DyeColor, RegistrySupplier<Dyed
         Direction.SOUTH, 1, 2, 1, 0.0, 0.0
     )
 
+    override val blockEntityType
+        get() = GenerationsBlockEntities.DYED_PC
+
+    override fun codec(): MapCodec<DyedPcBlock> = CODEC
+
     override fun createDefaultState(): BlockState {
         return super.createDefaultState().setValue(PcBlock.ON, false)
     }
 
-    override fun isPathfindable(
-        blockState: BlockState,
-        blockGetter: BlockGetter,
-        blockPos: BlockPos,
-        pathComputationType: PathComputationType,
-    ): Boolean = false
+    override fun isPathfindable(state: BlockState, pathComputationType: PathComputationType): Boolean = false
 
     override fun serverUse(
+        stack: ItemStack,
         state: BlockState,
         world: ServerLevel,
         pos: BlockPos,
         player: ServerPlayer,
         handIn: InteractionHand,
-        hit: BlockHitResult?,
-    ): InteractionResult {
+        hit: BlockHitResult
+    ): ItemInteractionResult {
         val basePos = getBaseBlockPos(pos, state)
 
         // Remove any duplicate block entities that may exist
         world.getBlockEntity(basePos.above())?.setRemoved()
 
         val baseEntity = world.getBlockEntity(basePos)
-        if (baseEntity !is DyedPcBlockEntity) return SUCCESS
+        if (baseEntity !is DyedPcBlockEntity) return ItemInteractionResult.SUCCESS
 
         if (player.isInBattle()) {
             player.sendSystemMessage(lang("pc.inbattle").red())
             return SUCCESS
         }
 
-        val pc = Cobblemon.storage.getPC(player.uuid)
+        val pc = Cobblemon.storage.getPC(player)
         // TODO add event to check if they can open this PC?
         PCLinkManager.addLink(ProximityPCLink(pc, player.uuid, baseEntity))
         OpenPCPacket(pc.uuid).sendToPlayer(player)
@@ -97,11 +101,11 @@ open class DyedPcBlock(color: DyeColor, map: Map<DyeColor, RegistrySupplier<Dyed
         return SUCCESS
     }
 
-    override fun <T : BlockEntity?> getTicker(
+    override fun <T : BlockEntity> getTicker(
         world: Level,
         blockState: BlockState,
         blockEntityType: BlockEntityType<T>,
-    ): BlockEntityTicker<T>? =  createTickerHelper(blockEntityType, GenerationsBlockEntities.DYED_PC.get(), DyedPcBlockEntity.TICKER::tick)
+    ): BlockEntityTicker<T>? =  createTickerHelper(blockEntityType, GenerationsBlockEntities.DYED_PC.asValue<DyedPcBlockEntity>(), DyedPcBlockEntity.TICKER::tick)
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
         super.createBlockStateDefinition(builder.add(PcBlock.ON))
@@ -139,5 +143,5 @@ open class DyedPcBlock(color: DyeColor, map: Map<DyeColor, RegistrySupplier<Dyed
     override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape {
         return SHAPE.getShape(state)
     }
-
+    val CODEC = simpleDyedCodec(::DyedPcBlock)
 }

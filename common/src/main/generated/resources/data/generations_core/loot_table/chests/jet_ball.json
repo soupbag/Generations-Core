@@ -1,0 +1,188 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:coba_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:flying_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sharp_beak"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:iron_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:clever_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:genius_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:health_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:muscle_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:resist_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:swift_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:eject_pack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cell_battery"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:eject_button"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:miracle_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:light_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:mental_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:mirror_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:white_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:silk_scarf"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:metal_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:metronome"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:nanab_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pomeg_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_anklet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:premier_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:protector"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:quick_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chesto_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:choice_scarf"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:terrain_extender"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:awakening"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:energy_root"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:heal_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:paralyze_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:zinc"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:leftovers"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_accuracy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_m"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_xs"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/jet_ball"
+}

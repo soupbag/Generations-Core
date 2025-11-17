@@ -7,11 +7,9 @@ import generations.gg.generations.core.generationscore.common.GenerationsCore
 import generations.gg.generations.core.generationscore.common.client.model.ModelContextProviders
 import generations.gg.generations.core.generationscore.common.client.model.ModelContextProviders.AngleProvider
 import generations.gg.generations.core.generationscore.common.client.render.rarecandy.CompiledModel.Companion.of
-import generations.gg.generations.core.generationscore.common.util.TimedCache
 import generations.gg.generations.core.generationscore.common.world.level.block.entities.ModelProvidingBlockEntity
 import generations.gg.generations.core.generationscore.common.world.level.block.generic.GenericRotatableModelBlock
 import gg.generations.rarecandy.renderer.animation.Animation
-import gg.generations.rarecandy.renderer.rendering.ObjectInstance
 import gg.generations.rarecandy.renderer.rendering.RareCandy
 import gg.generations.rarecandy.shaded.caffeine.cache.CacheLoader
 import gg.generations.rarecandy.shaded.caffeine.cache.Caffeine
@@ -19,11 +17,8 @@ import gg.generations.rarecandy.shaded.caffeine.cache.RemovalCause
 import net.minecraft.client.Minecraft
 import net.minecraft.core.Direction
 import net.minecraft.resources.ResourceLocation
-import java.time.Duration
-import java.time.Instant
 import java.util.concurrent.TimeUnit
 import java.util.function.BiConsumer
-import java.util.function.Function
 
 object ModelRegistry {
     private const val DUMMY = "dummy"
@@ -57,7 +52,7 @@ object ModelRegistry {
             })
     @JvmStatic
     operator fun get(modelProvider: ModelContextProviders.ModelProvider): CompiledModel? {
-        return get(modelProvider.model)
+        return modelProvider.model?.let(::get)
     }
 
     @JvmStatic
@@ -82,18 +77,17 @@ object ModelRegistry {
         CompiledModel.init()
     }
 
-    @JvmStatic
     fun prepForBER(stack: PoseStack, supplier: AngleProvider) {
         stack.translate(0.5f, 0.0f, 0.5f)
         if (supplier is ModelProvidingBlockEntity) {
             val block = supplier.blockState.block
 
-            if (block is GenericRotatableModelBlock<*> && block.shouldRotateSpecial()) {
+            if (block is GenericRotatableModelBlock && block.shouldRotateSpecial()) {
                 val forward: Direction = supplier.blockState.getValue(GenericRotatableModelBlock.FACING)
                 val x: Int = block.getWidthValue(supplier.blockState)
                 val z: Int = block.getLengthValue(supplier.blockState)
-                val width: Float = block.width() * 0.5f - x
-                val length: Float = block.length() * 0.5f - z
+                val width: Float = block.width * 0.5f - x
+                val length: Float = block.length * 0.5f - z
                 when (forward) {
                     Direction.SOUTH -> stack.translate(width, 0f, -length)
                     Direction.EAST -> stack.translate(-length, 0f, -width)

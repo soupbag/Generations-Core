@@ -1,0 +1,216 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:aguav_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:air_balloon"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:antidote"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:apicot_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:aspear_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:babiri_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:burn_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cell_battery"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:charti_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chesto_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:custap_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dire_hit"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:elixir"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:energy_root"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:float_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:focus_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:friend_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:galarica_cuff"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:great_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:guard_spec"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:heal_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:iapapa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:level_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:love_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lure_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:maranga_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:metal_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:micle_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:oran_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:petaya_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:qualot_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:repeat_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:shed_shell"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:smoke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:timer_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_attack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:black_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:blue_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:green_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pink_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:red_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:white_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:yellow_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:ink_sac"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_13"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_xs"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/poke_ball"
+}

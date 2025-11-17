@@ -23,7 +23,7 @@ public class Offers {
 
     private Offers(ResourceLocation key, @Nullable Level level, @Nullable Time lastRefreshed, @Nullable SimpleShopEntry[] entries) {
         this.key = key;
-        var shop = Shops.instance().get(key);
+        var shop = Shops.INSTANCE.get(key);
         this.refreshType = shop.getRefreshType();
         this.shopRefreshTime = shop.getRefreshTime();
         if (refreshType == ShopRefreshType.CUSTOM_INGAME || refreshType == ShopRefreshType.PER_MC_DAY) {
@@ -46,7 +46,7 @@ public class Offers {
     }
 
     public static Offers of(CompoundTag tag, @Nullable Level level) {
-        return new Offers(new ResourceLocation(tag.getString("key")), level, Time.fromInt(tag.getInt("lastRefreshed")),
+        return new Offers(ResourceLocation.parse(tag.getString("key")), level, Time.fromInt(tag.getInt("lastRefreshed")),
                 tag.getList("entries", 10).stream()
                         .map(t -> new SimpleShopEntry((CompoundTag) t))
                         .toArray(SimpleShopEntry[]::new));
@@ -68,7 +68,7 @@ public class Offers {
 
     private void refreshEntries() {
         this.refreshed = true;
-        this.entries = ShopGenerator.refresh(Shops.instance().get(key));
+        this.entries = ShopGenerator.refresh(Shops.INSTANCE.get(key));
     }
 
     public ResourceLocation getKey() {

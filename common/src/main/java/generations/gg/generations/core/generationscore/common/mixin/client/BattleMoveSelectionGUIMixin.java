@@ -2,17 +2,18 @@ package generations.gg.generations.core.generationscore.common.mixin.client;
 
 import com.cobblemon.mod.common.api.moves.MoveTemplate;
 import com.cobblemon.mod.common.api.moves.categories.DamageCategories;
+import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.client.gui.battle.subscreen.BattleMoveSelection.MoveTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.*;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.contents.LiteralContents;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 
 import javax.script.ScriptException;
@@ -38,7 +39,7 @@ public abstract class BattleMoveSelectionGUIMixin {
                     moveTemplate.getDescription(), 250, Style.EMPTY.withColor(moveTemplate.getElementalType().getHue()));
 
             for (FormattedText formattedText : description) {
-                tooltipInfo.add(MutableComponent.create(new LiteralContents(formattedText.getString())).withStyle(ChatFormatting.GRAY));
+                tooltipInfo.add(Component.literal(formattedText.getString()).withStyle(ChatFormatting.GRAY));
             }
 
             context.renderComponentTooltip(Minecraft.getInstance().font, tooltipInfo, mouseX, mouseY);

@@ -3,7 +3,8 @@ package generations.gg.generations.core.generationscore.common.client.screen.sta
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties.Companion.parse
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.client.gui.summary.widgets.ModelWidget
-import com.cobblemon.mod.common.client.render.models.blockbench.PoseableEntityState
+import com.cobblemon.mod.common.client.render.models.blockbench.PosableState
+//import com.cobblemon.mod.common.client.render.models.blockbench.PoseableEntityState
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.PokemonModelRepository
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
 import com.cobblemon.mod.common.entity.PoseType
@@ -31,6 +32,7 @@ import net.minecraft.resources.ResourceLocation
 import org.joml.Math
 import org.joml.Quaternionf
 import org.joml.Vector3f
+import java.util.*
 
 class StatueEditorScreen(val statue: StatueEntity) : Screen(Component.empty()) {
     private var x = 0
@@ -78,9 +80,11 @@ class StatueEditorScreen(val statue: StatueEntity) : Screen(Component.empty()) {
                 14,
                 50,
                 statue.label ?: "",
-                { true }) { s: String? -> run {
+                { true }) { s: String? -> s?.run {
+
+
                     statue.label = s
-                    UpdateStatuePacket.Label(statue.id, s).sendToServer()
+                    UpdateStatuePacket.Label(statue.id, s.optional()).sendToServer()
                 }
             })
         poseTextField = addRenderableWidget(
@@ -147,7 +151,7 @@ class StatueEditorScreen(val statue: StatueEntity) : Screen(Component.empty()) {
             ScreenUtils.createTextField(x + 59, y + 146 + 18, 126, 14, 500, statue.material ?: "", { true }) {
                 it.takeIf { it.isNotEmpty() }.run {
                     statue.material = it
-                    UpdateStatuePacket.Material(statue.id, it).sendToServer()
+                    UpdateStatuePacket.Material(statue.id, it.optional()).sendToServer()
                 }
             }
         )
@@ -246,6 +250,9 @@ class StatueEditorScreen(val statue: StatueEntity) : Screen(Component.empty()) {
         poseStack.drawString(font, "Orientation: " + String.format("%.2f", statue.yRot), x + 11, y + 24, 0x5F5F60, false)
     }
 
+    override fun renderBlurredBackground(partialTick: Float) {
+    }
+
     override fun isPauseScreen(): Boolean {
         return false
     }
@@ -271,65 +278,67 @@ class StatueEditorScreen(val statue: StatueEntity) : Screen(Component.empty()) {
             return if (s.isEmpty()) 0 else s.toInt()
         }
     }
-
-    fun drawProfilePokemon(
-        species: ResourceLocation,
-        aspects: Set<String>,
-        poseType: PoseType,
-        matrixStack: PoseStack,
-        rotation: Quaternionf,
-        state: PoseableEntityState<PokemonEntity>?,
-        partialTicks: Float,
-        scale: Float = 20F
-    ) {
-        println("Blep: $species $aspects")
-        val model = PokemonModelRepository.getPoser(species, aspects)
-        val texture = PokemonModelRepository.getTexture(species, aspects, state?.animationSeconds ?: 0F)
-
-        val context = RenderContext()
-        PokemonModelRepository.getTextureNoSubstitute(species, aspects, 0f).let { it -> context.put(RenderContext.TEXTURE, it) }
-        context.put(RenderContext.SCALE, PokemonSpecies.getByIdentifier(species)!!.getForm(aspects).baseScale)
-        context.put(RenderContext.SPECIES, species)
-        context.put(RenderContext.ASPECTS, aspects)
-
-        val renderType = model.getLayer(texture, false, false)
-
-        RenderSystem.applyModelViewMatrix()
-        matrixStack.scale(scale, scale, -scale)
-
-        if (state != null) {
-            model.getPose(poseType)?.let { state.setPose(it.poseName) }
-            state.timeEnteredPose = 0F
-            state.updatePartialTicks(partialTicks)
-            model.setupAnimStateful(null, state, 0F, 0F, 0F, 0F, 0F)
-        } else {
-            model.setupAnimStateless(poseType)
-        }
-        matrixStack.translate(model.profileTranslation.x, model.profileTranslation.y,  model.profileTranslation.z - 4.0)
-        matrixStack.scale(model.profileScale, model.profileScale, 1 / model.profileScale)
-
-        matrixStack.mulPose(rotation)
-        Lighting.setupForEntityInInventory()
-        val entityRenderDispatcher = Minecraft.getInstance().entityRenderDispatcher
-        rotation.conjugate()
-        entityRenderDispatcher.overrideCameraOrientation(rotation)
-        entityRenderDispatcher.setRenderShadow(true)
-
-        val bufferSource = Minecraft.getInstance().renderBuffers().bufferSource()
-        val buffer = bufferSource.getBuffer(renderType)
-        val light1 = Vector3f(-1F, 1F, 1.0F)
-        val light2 = Vector3f(1.3F, -1F, 1.0F)
-        RenderSystem.setShaderLights(light1, light2)
-        val packedLight = LightTexture.pack(11, 7)
-
-        model.withLayerContext(bufferSource, state, PokemonModelRepository.getLayers(species, aspects)) {
-            model.render(context, matrixStack, buffer, packedLight, OverlayTexture.NO_OVERLAY, 1F, 1F, 1F, 1F)
-            bufferSource.endBatch()
-        }
-        model.setDefault()
-        entityRenderDispatcher.setRenderShadow(true)
-        Lighting.setupFor3DItems()
-    }
+//
+//    fun drawProfilePokemon(
+//        species: ResourceLocation,
+//        aspects: Set<String>,
+//        poseType: PoseType,
+//        matrixStack: PoseStack,
+//        rotation: Quaternionf,
+//        state: PosableState,
+//        partialTicks: Float,
+//        scale: Float = 20F
+//    ) {
+//        println("Blep: $species $aspects")
+//        val model = PokemonModelRepository.getPoser(species, aspects)
+//        val texture = PokemonModelRepository.getTexture(species, aspects, state?.animationSeconds ?: 0F)
+//
+//        val context = RenderContext()
+//        PokemonModelRepository.getTextureNoSubstitute(species, aspects, 0f).let { it -> context.put(RenderContext.TEXTURE, it) }
+//        context.put(RenderContext.SCALE, PokemonSpecies.getByIdentifier(species)!!.getForm(aspects).baseScale)
+//        context.put(RenderContext.SPECIES, species)
+//        context.put(RenderContext.ASPECTS, aspects)
+//
+//        val renderType = model.getLayer(texture, false, false)
+//
+//        RenderSystem.applyModelViewMatrix()
+//        matrixStack.scale(scale, scale, -scale)
+//
+//        if (state != null) {
+//            model.getPose(poseType)?.let { state.setPose(it.poseName) }
+//            state.timeEnteredPose = 0F
+//            state.updatePartialTicks(partialTicks)
+//            model.setupAnimStateful(null, state, 0F, 0F, 0F, 0F, 0F)
+//        } else {
+//            model.setupAnimStateless(poseType)
+//        }
+//        matrixStack.translate(model.profileTranslation.x, model.profileTranslation.y,  model.profileTranslation.z - 4.0)
+//        matrixStack.scale(model.profileScale, model.profileScale, 1 / model.profileScale)
+//
+//        matrixStack.mulPose(rotation)
+//        Lighting.setupForEntityInInventory()
+//        val entityRenderDispatcher = Minecraft.getInstance().entityRenderDispatcher
+//        rotation.conjugate()
+//        entityRenderDispatcher.overrideCameraOrientation(rotation)
+//        entityRenderDispatcher.setRenderShadow(true)
+//
+//        val bufferSource = Minecraft.getInstance().renderBuffers().bufferSource()
+//        val buffer = bufferSource.getBuffer(renderType)
+//        val light1 = Vector3f(-1F, 1F, 1.0F)
+//        val light2 = Vector3f(1.3F, -1F, 1.0F)
+//        RenderSystem.setShaderLights(light1, light2)
+//        val packedLight = LightTexture.pack(11, 7)
+//
+//        model.withLayerContext(bufferSource, state, PokemonModelRepository.getLayers(species, aspects)) {
+//            model.render(context, matrixStack, buffer, packedLight, OverlayTexture.NO_OVERLAY, 1F, 1F, 1F, 1F)
+//            bufferSource.endBatch()
+//        }
+//        model.setDefault()
+//        entityRenderDispatcher.setRenderShadow(true)
+//        Lighting.setupFor3DItems()
+//    }
 }
+
+fun <T: Any> T?.optional(): Optional<T> = Optional.ofNullable(this)
 
 fun Float.floor(): Float = Math.floor(this)

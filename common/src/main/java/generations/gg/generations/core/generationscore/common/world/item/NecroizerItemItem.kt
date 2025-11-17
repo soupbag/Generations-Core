@@ -16,7 +16,7 @@ import net.minecraft.world.item.ItemStack
 class NecroizerItemItem(private val properties: Properties, private val species: String, private val move: String, private val form: String) : Item(properties), PokemonInteraction {
     override fun processInteraction(player: ServerPlayer, entity: PokemonEntity, stack: ItemStack): Boolean {
         if(entity.pokemon.isSpecies("necrozma")) {
-            val provider = entity.pokemon.getProviderOrNull<ChoiceSpeciesFeatureProvider>("necrozma_form") ?: return false
+            val provider = entity.pokemon.getProviderOrNull<ChoiceSpeciesFeatureProvider>("prism_fusion") ?: return false
             val feature = provider.getOrCreate(entity.pokemon)
 
             when(feature.value) {
@@ -25,12 +25,13 @@ class NecroizerItemItem(private val properties: Properties, private val species:
 
                     val pokemon = player.party().firstOrNull { it.isSpecies(species) } ?: return false
                     if(!entity.pokemon.embedPokemon(pokemon)) {
-                        player.sendSystemMessage("${entity.displayName.string} failed to absorb ${pokemon.getDisplayName().string}.".text(), true)
+                        player.sendSystemMessage("${entity.name.string} failed to absorb ${pokemon.getDisplayName().string}.".text(), true)
                         return false
                     }
 
                     feature.value = form
                     feature.apply(entity)
+                    entity.pokemon.persistentData.putString("prism_fusion", form)
 
                     Moves.getByName(move)?.run { entity.pokemon.benchedMoves.add(BenchedMove(this, 0)) }
 
@@ -40,6 +41,7 @@ class NecroizerItemItem(private val properties: Properties, private val species:
                 form -> {
                     feature.value = ""
                     feature.apply(entity)
+                    entity.pokemon.persistentData.remove("prism_fusion")
                     player.sendSystemMessage("generations_core.ability.formchange".asTranslated(entity.pokemon.getDisplayName().string), true)
 
 

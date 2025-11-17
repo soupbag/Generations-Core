@@ -1,0 +1,180 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:aguav_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:belue_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:black_belt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:blunder_policy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:carbos"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chesto_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:choice_scarf"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:eject_button"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:electric_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_xs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:fast_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:growth_mulch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:iapapa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ice_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:kelpsy_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:liechi_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:magmarizer"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:magnet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:miracle_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:moon_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:moon_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:nest_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:net_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:payapa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_anklet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:qualot_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:quick_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:quick_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:salac_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:tamato_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:throat_spray"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ultra_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:watmel_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_attack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glowstone_dust"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nether_wart"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:warped_fungus"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_far"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_s"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/fast_ball"
+}

@@ -1,0 +1,156 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rock_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rocky_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:safety_goggles"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:steel_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:air_balloon"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:babiri_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:binding_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chesto_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chilan_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:choice_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:iron"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:iron_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:kee_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:life_orb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:magmarizer"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:maranga_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_ether"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:metal_coat"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:eject_pack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ganlon_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:apicot_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:kee_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:maranga_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:float_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:focus_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:focus_sash"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:deep_sea_tooth"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:metronome"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ring_target"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:shed_shell"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:shell_bell"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:weakness_policy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:zoom_lens"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_l"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/leaden_ball"
+}

@@ -1,0 +1,188 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:aguav_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:antidote"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:aspear_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:awakening"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:berry_juice"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:big_root"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:black_sludge"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:burn_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cheri_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chesto_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cleanse_tag"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:custap_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dream_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:eject_pack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:elixir"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:enigma_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:figy_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:full_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:full_restore"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:guard_spec"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:heal_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:heal_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hp_up"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hyper_potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ice_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lansat_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:leppa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lum_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:mago_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_revive"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:paralyze_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pinap_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:revive"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:salac_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:shed_shell"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:super_potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:tamato_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:milk_bucket"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_mellohi"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:totem_of_undying"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_s"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/heal_ball"
+}

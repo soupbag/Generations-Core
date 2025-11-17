@@ -1,0 +1,156 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:health_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:coba_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:flying_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:iron_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sharp_beak"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:utility_umbrella"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:air_balloon"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:grepa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lansat_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lum_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:light_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:mental_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:mirror_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:white_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:icy_rock"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:heat_rock"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:assault_vest"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:electric_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:grassy_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:misty_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:psychic_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:miracle_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:antidote"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_elixir"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hyper_potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:great_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:calcium"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:choice_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:destiny_knot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_xs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_s"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_speed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_attack"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/wing_ball"
+}

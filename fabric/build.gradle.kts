@@ -45,7 +45,6 @@ repositories {
 dependencies {
     modImplementation("net.fabricmc:fabric-loader:${project.properties["fabric_loader_version"]}")
     modApi("net.fabricmc.fabric-api:fabric-api:${project.properties["fabric_api_version"]}+$minecraftVersion")
-    modApi("dev.architectury:architectury-fabric:${project.properties["architectury_version"]}")
 
     "common"(project(":common", "namedElements")) { isTransitive = false }
     "shadowBundle"(project(":common", "transformProductionFabric"))
@@ -56,7 +55,8 @@ dependencies {
 
     implementation("shadowBundle"("com.github.Chocohead:Fabric-ASM:v2.3")!!)
 
-    modApi("earth.terrarium.botarium:botarium-fabric-$minecraftVersion:${project.properties["botarium_version"]}")
+//    modImplementation(group = "earth.terrarium.common_storage_lib", name = "common-storage-lib-fabric-1.21.1", version = "0.0.7")
+
     modRuntimeOnly("mcp.mobius.waila:wthit:fabric-${project.properties["WTHIT"]}")
     modRuntimeOnly("lol.bai:badpackets:fabric-${project.properties["badPackets"]}")
 
@@ -73,7 +73,7 @@ dependencies {
     //Cobblemon
     modApi("com.cobblemon:fabric:${project.properties["cobblemon_version"]}")
     modApi("net.fabricmc:fabric-language-kotlin:1.13.2+kotlin.2.1.20")
-    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-$minecraftVersion:${project.properties["flywheel_fabric_version"]}")
+//    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-$minecraftVersion:${project.properties["flywheel_fabric_version"]}")
 }
 
 tasks {
@@ -147,26 +147,18 @@ private fun getPublishingCredentials(): Pair<String?, String?> {
     return Pair(curseForgeToken, modrinthToken)
 }
 
-tasks.register("runMoveModels") {
+tasks.register("runMoveDataGenResourcesToCommon") {
     group = "loom"
     doLast {
         var root = projectDir.toPath().absolute().parent
 
-        val fabricModels = root.resolve("fabric/src/main/generated/assets/generations_core/models").toFile()
-        val commonModels = root.resolve("common/src/main//generated/resources/assets/generations_core/models").toFile()
+        val fabricModels = root.resolve("fabric/src/main/generated/").toFile()
+        val commonModels = root.resolve("common/src/main/generated/resources/").toFile()
 
-        if (fabricModels.exists()) {
+        commonModels.mkdirs()
 
-            // Ensure the common models directory exists
-            commonModels.mkdirs()
-
-            // Move the folder (delete original after copying)
-            fabricModels.copyRecursively(commonModels, overwrite = true)
-            fabricModels.deleteRecursively() // Remove the old models folder
-
-            println("✅ Successfully moved models to common!")
-        } else {
-            println("⚠️ No models found in Fabric-generated resources! RunDatagen might have failed.")
-        }
+        fabricModels.copyRecursively(commonModels, overwrite = true)
+        fabricModels.deleteRecursively() // Remove the old models folder
+        println("Fabric DataGen resources to common.")
     }
 }

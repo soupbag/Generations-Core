@@ -1,34 +1,28 @@
 package generations.gg.generations.core.generationscore.common.util
 
+import com.cobblemon.mod.common.Cobblemon.statProvider
 import com.cobblemon.mod.common.api.moves.Moves
-import com.cobblemon.mod.common.api.net.Encodable
-import com.cobblemon.mod.common.api.pokemon.PokemonProperties
-import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.feature.*
 import com.cobblemon.mod.common.api.pokemon.stats.Stat
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
-import com.cobblemon.mod.common.api.properties.CustomPokemonProperty
 import com.cobblemon.mod.common.api.properties.CustomPokemonPropertyType
-import com.cobblemon.mod.common.api.storage.InvalidSpeciesException
-import com.cobblemon.mod.common.api.text.plus
+import com.cobblemon.mod.common.api.scheduling.afterOnServer
 import com.cobblemon.mod.common.api.text.text
-import com.cobblemon.mod.common.pokemon.*
-import com.cobblemon.mod.common.pokemon.Pokemon.Companion.loadFromNBT
-import com.cobblemon.mod.common.util.asResource
+import com.cobblemon.mod.common.item.PokemonItem
+import com.cobblemon.mod.common.pokemon.Pokemon
+import com.cobblemon.mod.common.pokemon.RenderablePokemon
 import com.cobblemon.mod.common.util.asTranslated
-import com.cobblemon.mod.common.util.toNbtList
+import com.cobblemon.mod.common.util.server
+import generations.gg.generations.core.generationscore.common.client.PokemonItemRendererProxy
+import generations.gg.generations.core.generationscore.common.world.item.PokemonProvidingItem
 import generations.gg.generations.core.generationscore.common.world.item.StatueSpawnerItem
-import net.minecraft.nbt.CompoundTag
-import net.minecraft.nbt.ListTag
-import net.minecraft.nbt.StringTag
-import net.minecraft.nbt.Tag
+import generations.gg.generations.core.generationscore.common.world.item.components.GenerationsDataComponents
+import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
-import net.minecraft.network.chat.TextColor
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.component.ItemLore
 
 private val statColorMap = mapOf(
     Stats.HP to "&8",
@@ -40,7 +34,7 @@ private val statColorMap = mapOf(
 )
 
 fun Pokemon.dembedPokemon(): Pokemon? = if(hasEmbeddedPokemon()) {
-    persistentData.getCompound(DataKeys.EMBEDDED_POKEMON).let { Pokemon.loadFromNBT(it) }.also {
+    persistentData.getCompound(DataKeys.EMBEDDED_POKEMON).let { Pokemon.loadFromNBT(server()!!.registryAccess(), it) }.also {
         persistentData.remove(DataKeys.EMBEDDED_POKEMON)
         this.anyChangeObservable.emit(this)
     }
@@ -52,7 +46,7 @@ fun Pokemon.embedPokemon(pokemon: Pokemon, needsToBeInWorld: Boolean = true): Bo
     val removedFromWorld = pokemon.storeCoordinates.get()?.remove() == true
 
     return if (!needsToBeInWorld || removedFromWorld) {
-        this.persistentData.put(DataKeys.EMBEDDED_POKEMON, pokemon.saveToNBT(CompoundTag()))
+        this.persistentData.put(DataKeys.EMBEDDED_POKEMON, pokemon.saveToNBT(server()!!.registryAccess()))
         this.anyChangeObservable.emit(this)
         true
     } else {
@@ -70,6 +64,52 @@ fun Pokemon.removeMove(moveName: String) {
     }
 
     benchedMoves.remove(Moves.getByNameOrDummy(moveName))
+}
+
+fun Pokemon.replaceMove(oldMove: String, newMove: String) {
+    moveSet.getMovesWithNulls().forEachIndexed { index, move ->
+        if (move != null && move.template.name == oldMove) {
+            val ppRatio = if (move.maxPp > 0) move.currentPp.toFloat() / move.maxPp else 0f
+            val newMoveInstance = Moves.getByNameOrDummy(newMove).create().apply {
+                raisedPpStages = move.raisedPpStages
+                currentPp = (ppRatio * maxPp).toInt().coerceIn(0, maxPp)
+            }
+            moveSet.setMove(index, newMoveInstance)
+            return
+        }
+    }
+}
+
+fun Pokemon.applyCosmeticFeature(feature: SpeciesFeature) {
+    this.persistentData.putString("cosmetic_name", feature.name)
+    if(feature is StringSpeciesFeature) {
+        feature.apply(this)
+    } else {
+        (feature as FlagSpeciesFeature).apply(this)
+    }
+}
+
+fun Pokemon.removeCosmeticFeature() {
+    val data = this.persistentData
+
+    if (data.contains("cosmetic_name")) {
+        val name = data.getString("cosmetic_name").also { data.remove("cosmetic_name") }
+        if (this.species.name == "Necrozma") {
+            val feature: StringSpeciesFeature
+
+            if (this.persistentData.getString("prism_fusion") == "dusk") {
+                feature = StringSpeciesFeature("prism_fusion", "dusk")
+                feature.apply(this)
+            } else if (this.persistentData.getString("prism_fusion") == "dawn") {
+                feature = StringSpeciesFeature("prism_fusion", "dawn")
+                feature.apply(this)
+            }
+        } else {
+            features.removeIf { it.name == name }
+        }
+    }
+
+    updateAspects()
 }
 
 fun Pokemon.hasEmbeddedPokemon(): Boolean {
@@ -123,37 +163,19 @@ fun MutableList<Component>.add(pokemon: Pokemon) {
 }
 
 fun ItemStack.savePokemon(poke: Pokemon) {
-    var tag = this.getOrCreateTag()
-     var clientPokemon = CompoundTag()
-
-    clientPokemon.putString("Species", poke.species.resourceIdentifier.toString())
-    clientPokemon.put("Aspects", poke.aspects.map { StringTag.valueOf(it) }.toNbtList())
-    tag.put(DataKeys.CLIENT_POKEMON_DATA, clientPokemon)
-    tag.put("pokemon", poke.saveToNBT(CompoundTag()))
+    set(GenerationsDataComponents.EMBEDDED_POKEMON.value(), poke)
 }
 
 fun ItemStack.removePokemon() {
-    var tag = this.tag ?: return
-    tag.remove("pokemon")
-    tag.remove(DataKeys.CLIENT_POKEMON_DATA)
+    remove(GenerationsDataComponents.EMBEDDED_POKEMON.value())
 }
 
 fun ItemStack.getRenderablePokemon(): RenderablePokemon? {
-    if(item is StatueSpawnerItem) {
-        return (item as StatueSpawnerItem).pokemon?.asRenderablePokemon() //TODO: See if this explodes.
+    if(item is PokemonProvidingItem) {
+        return (item as PokemonProvidingItem).getSpeciesAndAspectsPair(this)?.let { RenderablePokemon(it.first, it.second) }
     }
 
-    return if (hasTag() && tag!!.contains(DataKeys.CLIENT_POKEMON_DATA)) {
-        var nbt = getTagElement(DataKeys.CLIENT_POKEMON_DATA)!!
-
-        var species = PokemonSpecies.getByIdentifier(nbt.getString("Species").asResource()) ?: return null
-
-        var aspects = nbt.getList("Aspects", Tag.TAG_STRING.toInt()).mapNotNull { it as? StringTag }.map { it.asString }.toCollection(HashSet())
-
-        return RenderablePokemon(species, aspects)
-    } else {
-        null
-    }
+    return get(GenerationsDataComponents.EMBEDDED_POKEMON.value())?.asRenderablePokemon()
 }
 
 fun ItemStack.getPokemon(): Pokemon? {
@@ -161,27 +183,50 @@ fun ItemStack.getPokemon(): Pokemon? {
         return (item as StatueSpawnerItem).pokemon
     }
 
-    return if (hasTag() && tag!!.contains("pokemon")) {
-        loadFromNBT(getTagElement("pokemon")!!)
-    } else {
-        null
-    }
+    return get(GenerationsDataComponents.EMBEDDED_POKEMON.value())
 }
 
+fun Pokemon.fixIVS() {
+    println("Name: ${this.species.name}")
+    val special = isLegendary() || isUltraBeast() || species.name == "ursaluna-bloodmoon" || species.name in setOf(
+        "Gouging Fire",
+        "Raging Bolt",
+        "Walking Wake",
+        "Iron Boulder",
+        "Iron Crown",
+        "Iron Leaves"
+    )
+    if (!special) return
 
+    var perfectIvCounter = 0
+    ivs.forEach { stat ->
+        if (stat.value == 31) perfectIvCounter++
+    }
 
+    if (perfectIvCounter >= 3) {
+        return
+    }
+
+    val indices = (0..5).shuffled().take(3)
+    val permaStats: Collection<Stat> = statProvider.ofType(Stat.Type.PERMANENT)
+
+    for ((index, stat) in permaStats.withIndex()) {
+        if (indices.contains(index)) {
+            this.ivs[stat] = 31
+        }
+    }
+}
 
 fun Pokemon.removeIfBelongs(player: Player): Boolean {
     return belongsTo(player) && storeCoordinates.get()?.remove() == true
 }
 
 fun <T:Any> ItemStack.setLore(lore: List<T>?): ItemStack {
-    val compoundtag = getOrCreateTagElement(ItemStack.TAG_DISPLAY)
+
     if (lore != null) {
-        lore.map { if (it is MutableComponent) it else it.toString().text() }.map { Component.Serializer.toJson(it) }.map { StringTag.valueOf(it) }
-            .toCollection(ListTag()).let { compoundtag.put(ItemStack.TAG_LORE, it) }
+        set(DataComponents.LORE, lore.map { if (it is MutableComponent) it else it.toString().text() }.toList().let { ItemLore(it) })
     } else {
-        compoundtag.remove(ItemStack.TAG_LORE)
+        remove(DataComponents.LORE)
     }
     return this
 }

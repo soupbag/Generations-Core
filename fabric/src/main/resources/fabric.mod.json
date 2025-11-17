@@ -10,9 +10,23 @@
   "license": "GNU GPL 3.0",
   "environment": "*",
   "entrypoints": {
-    "preLaunch": ["generations.gg.generations.core.generationscore.fabric.GenerationsCoreFabric"],
-    "main": ["generations.gg.generations.core.generationscore.fabric.GenerationsCoreFabric"],
-    "client" : ["generations.gg.generations.core.generationscore.fabric.client.GenerationsCoreClientFabric"],
+    "preLaunch": [
+      {
+        "adapter": "kotlin",
+        "value": "generations.gg.generations.core.generationscore.fabric.GenerationsCoreFabric"
+      }],
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "generations.gg.generations.core.generationscore.fabric.GenerationsCoreFabric"
+      }
+    ],
+    "client" : [
+      {
+        "adapter": "kotlin",
+        "value": "generations.gg.generations.core.generationscore.fabric.client.GenerationsCoreClientFabric"
+      }
+    ],
     "fabric-datagen": ["generations.gg.generations.core.generationscore.fabric.datagen.DataGen"],
     "rei_client": [
       "generations.gg.generations.core.generationscore.common.compat.rei.ReiCompatClient"
@@ -27,10 +41,8 @@
   ],
   "depends": {
     "fabricloader": ">=0.15.3",
-    "minecraft": ">=1.20.1",
-    "architectury": ">=9.1.13",
-    "cobblemon": "=1.5.2+1.20.1",
-    "botarium": ">=2.3.2"
+    "minecraft": ">=1.21.1",
+    "cobblemon": "=1.6.1+1.21.1"
   },
   "suggests": {
     "wthit": ">=8.15.0"

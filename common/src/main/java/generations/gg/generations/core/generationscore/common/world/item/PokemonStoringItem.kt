@@ -3,11 +3,11 @@ package generations.gg.generations.core.generationscore.common.world.item
 import com.cobblemon.mod.common.Cobblemon.storage
 import com.cobblemon.mod.common.api.text.plus
 import com.cobblemon.mod.common.api.text.text
-import generations.gg.generations.core.generationscore.common.util.add
 import generations.gg.generations.core.generationscore.common.util.getPokemon
 import generations.gg.generations.core.generationscore.common.util.removePokemon
 import generations.gg.generations.core.generationscore.common.util.setLore
 import generations.gg.generations.core.generationscore.common.world.item.GenerationsCobblemonInteractions.PokemonInteraction
+import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundEvents
@@ -19,6 +19,7 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
 import net.minecraft.world.level.Level
+import java.util.UUID
 
 abstract class PokemonStoringItem(properties: Properties) : Item(properties), PokemonInteraction {
 
@@ -28,11 +29,11 @@ abstract class PokemonStoringItem(properties: Properties) : Item(properties), Po
 
     override fun appendHoverText(
         stack: ItemStack,
-        level: Level?,
+        context: TooltipContext,
         tooltipComponents: MutableList<Component>,
-        isAdvanced: TooltipFlag,
+        tooltipFlag: TooltipFlag
     ) {
-        super.appendHoverText(stack, level, tooltipComponents, isAdvanced)
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag)
     }
 
     override fun use(level: Level, player: Player, usedHand: InteractionHand): InteractionResultHolder<ItemStack> {
@@ -40,11 +41,11 @@ abstract class PokemonStoringItem(properties: Properties) : Item(properties), Po
             val item = player.getItemInHand(usedHand)
             val pokemon = item.getPokemon()
             if (pokemon != null) {
-                storage.getParty((player as ServerPlayer)).add(pokemon)
+                storage.getParty((player as ServerPlayer)).add(pokemon.also { it.uuid = UUID.randomUUID() }.also { it.refreshOriginalTrainer() })
                 item.shrink(1)
                 item.removePokemon()
                 item.setLore(mutableListOf<Component>())
-                item.setHoverName(null)
+                item.remove(DataComponents.ITEM_NAME)
                 if(consumeOnRelease()) item.shrink(1)
                 player.level().playSound(null, player, SoundEvents.ENDERMAN_TELEPORT, SoundSource.MASTER, 1.0f, 1.0f)
                 return InteractionResultHolder.sidedSuccess(item, false)

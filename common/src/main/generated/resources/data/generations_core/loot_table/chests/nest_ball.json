@@ -1,0 +1,164 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:bug_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:choice_specs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cleanse_tag"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:clever_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:coba_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_s"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:flying_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:genius_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:grassy_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:grepa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:haban_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:health_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:kebia_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:leaf_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:liechi_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lum_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:mental_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:muscle_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:nanab_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:nest_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poison_barb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:repeat_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:resist_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sharp_beak"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sweet_apple"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:swift_feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:white_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:wiki_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_accuracy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_defence"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_special_attack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_special_defence"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cobweb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:feather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_11"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/nest_ball"
+}

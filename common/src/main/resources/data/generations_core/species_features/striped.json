@@ -1,6 +1,8 @@
 {
   "type": "choice",
-  "keys": ["striped"],
+  "keys": [
+    "striped"
+  ],
   "default": "random",
   "choices": [
     "blue",

@@ -1,0 +1,172 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:air_balloon"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:binding_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:burn_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cheri_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cherish_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:clover_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:destiny_knot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dragon_scale"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dubious_disc"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:everstone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_xs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:guard_spec"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:haban_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hp_up"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ice_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ice_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:leppa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:love_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:love_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:oval_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_anklet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_bracer"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ribbon_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rowap_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sitrus_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:smooth_rock"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:starf_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:strawberry_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:water_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:water_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:watmel_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:wepear_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:white_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:turtle_scute"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_ward"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_m"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/love_ball"
+}

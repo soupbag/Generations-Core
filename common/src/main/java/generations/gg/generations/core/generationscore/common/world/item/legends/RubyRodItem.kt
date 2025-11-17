@@ -1,16 +1,20 @@
 package generations.gg.generations.core.generationscore.common.world.item.legends
 
-import com.cobblemon.mod.common.api.text.gray
-import com.cobblemon.mod.common.api.text.red
+import com.mojang.serialization.Codec
+import generations.gg.generations.core.generationscore.common.util.Codecs
 import generations.gg.generations.core.generationscore.common.world.entity.TieredFishingHookEntity.Teir
+import generations.gg.generations.core.generationscore.common.world.item.GenerationsItems
 import generations.gg.generations.core.generationscore.common.world.item.LangTooltip
 import generations.gg.generations.core.generationscore.common.world.item.TieredFishingRodItem
+import generations.gg.generations.core.generationscore.common.world.item.components.GenerationsDataComponents
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.minecraft.network.chat.Component
 import net.minecraft.util.StringRepresentable
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
-import net.minecraft.world.level.Level
 import java.util.*
+import kotlin.math.min
 
 class RubyRodItem(properties: Properties?, tier: Teir?) :
     TieredFishingRodItem(properties, tier), LangTooltip {
@@ -20,19 +24,11 @@ class RubyRodItem(properties: Properties?, tier: Teir?) :
 
     override fun appendHoverText(
         stack: ItemStack,
-        level: Level?,
+        level: TooltipContext,
         tooltipComponents: MutableList<Component>,
         isAdvanced: TooltipFlag
     ) {
-        val map = getFishedShard(stack)
-
-        if (map.isEmpty()) super<LangTooltip>.appendHoverText(stack, level, tooltipComponents, isAdvanced)
-        else {
-            tooltipComponents.add("Shards Obtained:".red())
-            if (map.containsKey(LakeTrioShardType.WILLPOWER)) tooltipComponents.add("Willpower: (${map[LakeTrioShardType.WILLPOWER]}/9)".gray())
-            if (map.containsKey(LakeTrioShardType.EMOTION)) tooltipComponents.add("Emotion: (${map[LakeTrioShardType.EMOTION]}/9)".gray())
-            if (map.containsKey(LakeTrioShardType.KNOWLEDGE)) tooltipComponents.add("Knowledge: (${map[LakeTrioShardType.KNOWLEDGE]}/9)".gray())
-        }
+        super.addText(stack, level, tooltipComponents, isAdvanced)
     }
 
     enum class LakeTrioShardType : StringRepresentable {
@@ -43,36 +39,89 @@ class RubyRodItem(properties: Properties?, tier: Teir?) :
         override fun getSerializedName(): String {
             return name.lowercase(Locale.getDefault())
         }
+
+        companion object {
+            val CODEC: Codec<LakeTrioShardType> =  StringRepresentable.fromEnum { LakeTrioShardType.entries.toTypedArray() }
+        }
     }
 
+    data class FishedShards(var willpower: Int, var knowledge: Int, var emotion: Int, var show: Boolean) {
+        operator fun get(shardType: LakeTrioShardType): Int = when(shardType) {
+            LakeTrioShardType.WILLPOWER -> willpower
+            LakeTrioShardType.KNOWLEDGE -> knowledge
+            LakeTrioShardType.EMOTION -> emotion
+        }
+
+        operator fun set(shardType: LakeTrioShardType, value: Int) = when(shardType) {
+            LakeTrioShardType.WILLPOWER -> willpower = value
+            LakeTrioShardType.KNOWLEDGE -> knowledge = value
+            LakeTrioShardType.EMOTION -> emotion = value
+        }
+
+        companion object {
+            val EMPTY: FishedShards = FishedShards(0, 0, 0, true)
+
+            val CODEC = Codecs.codec4(
+                "willpower", Codec.INT, FishedShards::willpower,
+                "knowledge", Codec.INT, FishedShards::knowledge,
+                "emotion", Codec.INT, FishedShards::emotion,
+                "show", Codec.BOOL, FishedShards::show,
+                ::FishedShards
+            )
+        }
+    }
+
+
     companion object {
-        @JvmStatic
-        fun getFishedShard(stack: ItemStack): Map<LakeTrioShardType, Byte> {
-            val tag = stack.getOrCreateTagElement("fished_shards")
+        fun sanitizeList(
+            list: ObjectArrayList<ItemStack>,
+            currentShards: FishedShards
+        ): ObjectArrayList<ItemStack> {
+            list.removeIf { itemStack: ItemStack -> !isShard(itemStack) }
 
-            val map = HashMap<LakeTrioShardType, Byte>()
+            val sanitizedList = ObjectArrayList<ItemStack>()
 
-            map[LakeTrioShardType.WILLPOWER] = tag.getByte("willpower")
-            map[LakeTrioShardType.KNOWLEDGE] = tag.getByte("knowledge")
-            map[LakeTrioShardType.EMOTION] = tag.getByte("emotion")
+            for (itemStack in list) {
+                val shardType = getShardType(itemStack.item)
 
-            return map
+                if (shardType != null) {
+                    val currentCount = currentShards[shardType]
+                    val stackCount = itemStack.count
+
+                    if (currentCount < 9) {
+                        val allowableCount = min(stackCount.toDouble(), (9 - currentCount).toDouble()).toInt()
+                        val cappedStack = itemStack.copy()
+                        cappedStack.count = allowableCount
+
+                        sanitizedList.add(cappedStack)
+                        currentShards[shardType] = (currentCount + allowableCount) // Update currentShards in place
+                    }
+                }
+            }
+
+            return sanitizedList
+        }
+
+        private fun getShardType(item: Item): LakeTrioShardType? {
+            if (item === GenerationsItems.SHARD_OF_EMOTION) {
+                return LakeTrioShardType.EMOTION
+            } else if (item === GenerationsItems.SHARD_OF_KNOWLEDGE) {
+                return LakeTrioShardType.KNOWLEDGE
+            } else if (item === GenerationsItems.SHARD_OF_WILLPOWER) {
+                return LakeTrioShardType.WILLPOWER
+            }
+            return null
         }
 
         @JvmStatic
-        fun saveShardCounts(stack: ItemStack, map: Map<LakeTrioShardType?, Byte?>) {
-            val tag = stack.getOrCreateTagElement("fished_shards")
+        fun getFishedShard(stack: ItemStack): FishedShards? = stack.get(GenerationsDataComponents.FISHED_SHARDS.value())
 
-            tag.putByte("willpower", map.getOrDefault(LakeTrioShardType.WILLPOWER, 0.toByte())!!)
-            tag.putByte("knowledge", map.getOrDefault(LakeTrioShardType.KNOWLEDGE, 0.toByte())!!)
-            tag.putByte("emotion", map.getOrDefault(LakeTrioShardType.EMOTION, 0.toByte())!!)
+        private fun isShard(itemStack: ItemStack): Boolean {
+            val item = itemStack.item
+            return item === GenerationsItems.SHARD_OF_EMOTION || item === GenerationsItems.SHARD_OF_KNOWLEDGE || item === GenerationsItems.SHARD_OF_WILLPOWER
         }
 
         @JvmStatic
-        fun isFinished(itemstack: ItemStack): Boolean {
-            val map = getFishedShard(itemstack)
-
-            return map[LakeTrioShardType.WILLPOWER]!! >= 9 && map[LakeTrioShardType.KNOWLEDGE]!! >= 9 && map[LakeTrioShardType.EMOTION]!! >= 9
-        }
+        fun isFinished(itemstack: ItemStack): Boolean = getFishedShard(itemstack)?.let { shards -> shards.willpower >= 9 && shards.knowledge >= 9 && shards.emotion >= 9 } ?: false
     }
 }

@@ -1,0 +1,152 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ability_capsule"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:belue_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:bluk_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cracked_pot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dawn_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:deep_sea_tooth"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dragon_fang"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dusk_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_m"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_share"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:flower_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:full_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:great_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:grepa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ice_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ice_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:love_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lucky_egg"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:luxury_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:nomel_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pamtre_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:premier_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:psychic_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:room_service"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:silk_scarf"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:soothe_bell"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:quartz_block"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_chirp"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_scrap"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_l"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/luxury_ball"
+}

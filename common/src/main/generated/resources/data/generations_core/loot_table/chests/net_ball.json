@@ -1,0 +1,184 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:absorb_bulb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chilan_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:choice_specs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:clover_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dire_hit"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:durin_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:elixir"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:energy_root"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:galarica_cuff"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:grass_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:kee_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:leaf_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lum_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:magost_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:maranga_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_elixir"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:micle_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:miracle_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:nomel_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:passho_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:petaya_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:revival_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rindo_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:silver_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sport_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:tanga_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:tart_apple"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:wepear_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_defence"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_special_attack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_special_defence"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_speed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:yache_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:zoom_lens"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:string"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:slime_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rabbit_hide"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_13"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:jolly_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:naive_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:modest_mint"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/net_ball"
+}

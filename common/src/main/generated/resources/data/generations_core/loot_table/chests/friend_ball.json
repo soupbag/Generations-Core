@@ -1,0 +1,232 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:apicot_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:berry_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:bright_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:calcium"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:choice_specs"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chople_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:eject_button"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:eject_pack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:electirizer"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:enigma_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:eviolite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_s"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:fire_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:flower_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:focus_sash"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:friend_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:galarica_cuff"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:grepa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:growth_mulch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:heal_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hondew_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:kings_rock"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lansat_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:leftovers"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:light_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:luxury_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_elixir"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:occa_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:oval_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pomeg_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_weight"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:protective_pads"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:qualot_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:quick_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rawst_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:razor_claw"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:revival_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ring_target"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sachet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:shed_shell"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:silver_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:star_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:tanga_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:throat_spray"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:twisted_spoon"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:wacan_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:weakness_policy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:whipped_dream"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_attack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:porkchop"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:milk_bucket"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rabbit_foot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_strad"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/friend_ball"
+}

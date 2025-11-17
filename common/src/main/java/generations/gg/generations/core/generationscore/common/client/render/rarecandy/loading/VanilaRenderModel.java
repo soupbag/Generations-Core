@@ -1,6 +1,7 @@
 package generations.gg.generations.core.generationscore.common.client.render.rarecandy.loading;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import generations.gg.generations.core.generationscore.common.client.GenerationsTextureLoader;
 import generations.gg.generations.core.generationscore.common.client.model.ModelContextProviders;
 import generations.gg.generations.core.generationscore.common.client.render.rarecandy.BlockLightValueProvider;
 import generations.gg.generations.core.generationscore.common.client.render.rarecandy.ITextureWithResourceLocation;
@@ -61,17 +62,16 @@ public class VanilaRenderModel implements RenderModel {
 
         if(tint == null) tint = WHITE;
         var modelMatrix = instance.transformationMatrix();
-        var viewMatrix = instance.viewMatrix();
 
         for (int i = 0; i < indexSize; i += 3) {
-            addVertex(consumer, i, tint, light, modelMatrix, viewMatrix, transform, transforms);
-            addVertex(consumer, i, tint, light, modelMatrix, viewMatrix, transform, transforms);
-            addVertex(consumer, i + 1, tint, light, modelMatrix, viewMatrix, transform, transforms);
-            addVertex(consumer, i + 2, tint, light, modelMatrix, viewMatrix, transform, transforms);
+            addVertex(consumer, i, tint, light, modelMatrix, transform, transforms);
+            addVertex(consumer, i, tint, light, modelMatrix, transform, transforms);
+            addVertex(consumer, i + 1, tint, light, modelMatrix, transform, transforms);
+            addVertex(consumer, i + 2, tint, light, modelMatrix, transform, transforms);
         }
     }
 
-    private void addVertex(VertexConsumer consumer, int i, Vector3f tint, int light, Matrix4f modelMatrix, Matrix4f viewMatrix, Transform transform, Matrix4f[] transforms) {
+    private void addVertex(VertexConsumer consumer, int i, Vector3f tint, int light, Matrix4f modelMatrix, Transform transform, Matrix4f[] transforms) {
         var bufferIndex = indicies[i];
 
         var posIndex = bufferIndex * 3;
@@ -89,16 +89,14 @@ public class VanilaRenderModel implements RenderModel {
 
         modelMatrix.transform(SKELETAL_VECTOR);
 
-        consumer.vertex(SKELETAL_VECTOR.x(),
+        consumer.addVertex(SKELETAL_VECTOR.x(),
                         SKELETAL_VECTOR.y(),
                         SKELETAL_VECTOR.z())
-                .color(tint.x, tint.y, tint.z, 1.0f)
-                .uv(UV_VECTOR.x(), UV_VECTOR.y())
-                .overlayCoords(OverlayTexture.NO_OVERLAY)
-                .uv2(light)
-                .normal(normals[posIndex], normals[posIndex+1], normals[posIndex+2])
-                .endVertex();
-    }
+                .setColor(tint.x, tint.y, tint.z, 1.0f)
+                .setUv(UV_VECTOR.x(), UV_VECTOR.y())
+                .setOverlay(OverlayTexture.NO_OVERLAY)
+                .setLight(light)
+                .setNormal(normals[posIndex], normals[posIndex+1], normals[posIndex+2]);}
 
 //    private Matrix4f getBoneTransform(Matrix4f[] boneTransforms, int boneIndex) {
 //        var boneTransform = boneTransforms[boneIds[boneIndex]].scale(boneWeights[boneIndex], new Matrix4f()).add(boneTransforms[boneIds[boneIndex+1]].scale(boneWeights[boneIndex+1], new Matrix4f()).add(boneTransforms[boneIds[boneIndex+2]].scale(boneWeights[boneIndex+2], new Matrix4f()).add(boneTransforms[boneIds[boneIndex+3]].scale(boneWeights[boneIndex+2], new Matrix4f()))));
@@ -127,7 +125,7 @@ public class VanilaRenderModel implements RenderModel {
             if (!object.shouldRender(instance)) {
 
                 Material material = object.getMaterial(instance.variant());
-                var texture = material.getDiffuseTexture();
+                var texture = GenerationsTextureLoader.INSTANCE.getTexture(material.images().getDiffuse());
 
                 if(texture instanceof ITextureWithResourceLocation textureWithResourceLocation) {
                     Transform transform = object.getTransform(instance.variant());

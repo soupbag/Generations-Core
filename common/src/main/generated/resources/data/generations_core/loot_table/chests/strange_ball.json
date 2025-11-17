@@ -1,0 +1,60 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:surprise_mulch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:growth_mulch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rich_mulch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_weight"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pp_up"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rare_candy"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:room_service"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:enigma_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pomeg_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:yache_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hondew_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:totem_of_undying"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "generations_core:chests/strange_ball"
+}

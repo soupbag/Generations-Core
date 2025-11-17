@@ -1,0 +1,224 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:berry_juice"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:black_glasses"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:bright_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:bug_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cheri_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chilan_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:choice_scarf"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cleanse_tag"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:damp_rock"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:deep_sea_scale"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dive_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dragon_scale"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:durin_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ether"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_s"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:fire_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ganlon_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:grass_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:heal_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hyper_potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:leaf_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:max_ether"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:mental_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:micle_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:nest_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:oran_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:paralyze_heal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:passho_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:petaya_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_lens"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:prism_scale"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:quick_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:revival_herb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:rindo_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:safari_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:silk_scarf"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:strawberry_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ultra_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:black_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:blue_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:green_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pink_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:red_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:white_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:yellow_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:end_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:ghast_tear"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_strad"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_m"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/great_ball"
+}

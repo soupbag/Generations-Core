@@ -1,0 +1,160 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:air_balloon"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:binding_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:cell_battery"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chople_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:colbur_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:custap_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:eject_button"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:electric_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:fast_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:focus_band"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:focus_sash"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:grassy_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:guard_spec"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:heavy_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hyper_potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:misty_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:passho_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:protein"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:psychic_seed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:red_card"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:repeat_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:revive"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:smoke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_special_attack"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:x_speed"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:zinc"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:black_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:blue_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:green_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pink_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:red_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:white_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:yellow_apricorn"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:string"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_mall"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/repeat_ball"
+}

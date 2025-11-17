@@ -18,6 +18,7 @@ import generations.gg.generations.core.generationscore.common.config.SpeciesKey
 import generations.gg.generations.core.generationscore.common.util.getOrCreate
 import generations.gg.generations.core.generationscore.common.util.getProviderOrNull
 import generations.gg.generations.core.generationscore.common.util.isSpecies
+import generations.gg.generations.core.generationscore.common.util.removeMove
 import generations.gg.generations.core.generationscore.common.util.removePokemon
 import generations.gg.generations.core.generationscore.common.world.entity.block.PokemonUtil
 import net.minecraft.core.BlockPos
@@ -81,6 +82,14 @@ object GenerationsMolangFunctions {
                         }
 
                         DoubleValue.ZERO
+                    },
+
+                    "remove_rotom_move" to Function {
+                        pokemon.removeMove("overheat")
+                        pokemon.removeMove("hydropump")
+                        pokemon.removeMove("blizzard")
+                        pokemon.removeMove("airslash")
+                        pokemon.removeMove("leafstorm")
                     }
                 )
             })
@@ -128,7 +137,7 @@ object GenerationsMolangFunctions {
 
                     if(speciesKey == null) return@Function DoubleValue(1.0)
 
-                    return@Function DoubleValue(if (GenerationsCore.CONFIG.caught.capped(player, speciesKey)) 1.0 else 0.0)
+                    return@Function DoubleValue(if (player is ServerPlayer && GenerationsCore.CONFIG.caught.capped(player, speciesKey)) 1.0 else 0.0)
                 },
                 "main_hand" to Function<MoParams, Any> {
                     player.mainHandItem.toMolang()
@@ -139,18 +148,24 @@ object GenerationsMolangFunctions {
 
 
                 "party" to Function<MoParams, Any> {
-                    player.party().asMoLangValue()
+                    if(player is ServerPlayer) player.party().asMoLangValue()
+                    else DoubleValue.ZERO
                 },
 
                 "has_in_party" to Function<MoParams, Any> {
-                    val properties = it.getStringOrNull(0)?.let { SpeciesKey.fromString(it) }?.createProperties()
+                    if(player is ServerPlayer) {
+                        val properties = it.getStringOrNull(0)?.let { SpeciesKey.fromString(it) }?.createProperties()
 
-                    if(properties == null) return@Function DoubleValue(1.0)
+                        if (properties == null) return@Function DoubleValue(1.0)
 
-                    val index = it.getDoubleOrNull(1)?.toInt()
+                        val index = it.getDoubleOrNull(1)?.toInt()
 
-                    if(index != null) return@Function DoubleValue(if (player.party().get(index)?.takeIf { properties.matches(it) } != null) 1.0 else 0.0)
-                    else return@Function DoubleValue(if (player.party().any { properties.matches(it) }) 1.0 else 0.0)
+                        if (index != null) return@Function DoubleValue(
+                            if (player.party().get(index)?.takeIf { properties.matches(it) } != null) 1.0 else 0.0)
+                        else return@Function DoubleValue(
+                            if (player.party().any { properties.matches(it) }) 1.0 else 0.0
+                        )
+                    } else DoubleValue.ZERO
                 })
             //TODO: Add money support
         }
@@ -187,7 +202,7 @@ private fun String.parseYaw(player: ServerPlayer): Float =
 
 private fun TagKey<Block>.findNearestYaw(player: ServerPlayer): Float {
     return BlockPos.withinManhattanStream(player.onPos, 10, 10, 10)
-        .filter { it: BlockPos -> player.serverLevel().getBlockState(it).block.`arch$holder`().`is`(this) }
+        .filter { it: BlockPos -> player.serverLevel().getBlockState(it).block.builtInRegistryHolder().`is`(this) }
         .findFirst().getOrNull()?.let {
             var blockEntity = player.serverLevel().getBlockEntity(it)
 
@@ -203,7 +218,7 @@ private fun TagKey<Block>.findNearestYaw(player: ServerPlayer): Float {
 
 private fun ResourceKey<Block>.findNearestYaw(player: ServerPlayer): Float {
     return BlockPos.withinManhattanStream(player.onPos, 10, 10, 10)
-        .filter { it: BlockPos -> player.serverLevel().getBlockState(it).block.`arch$holder`().`is`(this) }
+        .filter { it: BlockPos -> player.serverLevel().getBlockState(it).block.builtInRegistryHolder().`is`(this) }
         .findFirst().getOrNull()?.let {
             var blockEntity = player.serverLevel().getBlockEntity(it)
 
@@ -223,13 +238,13 @@ private fun String.parsePos(player: ServerPlayer): Vec3 =
 
 private fun TagKey<Block>.findNearestPos(player: ServerPlayer): Vec3 {
     return BlockPos.withinManhattanStream(player.onPos, 10, 10, 10)
-        .filter { it: BlockPos -> player.serverLevel().getBlockState(it).block.`arch$holder`().`is`(this) }
+        .filter { it: BlockPos -> player.serverLevel().getBlockState(it).block.builtInRegistryHolder().`is`(this) }
         .findFirst().orElse(player.onPos).center
 }
 
 private fun ResourceKey<Block>.findNearestPos(player: ServerPlayer): Vec3 {
     return BlockPos.withinManhattanStream(player.onPos, 10, 10, 10)
-        .filter { it: BlockPos -> player.serverLevel().getBlockState(it).block.`arch$holder`().`is`(this) }
+        .filter { it: BlockPos -> player.serverLevel().getBlockState(it).block.builtInRegistryHolder().`is`(this) }
         .findFirst().orElse(player.onPos).center
 }
 

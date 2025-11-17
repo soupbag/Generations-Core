@@ -19,15 +19,6 @@
     "generations_core:pika_poster_sprite",
     "generations_core:pikachu_poster_sprite",
     "generations_core:poke_ball_poster",
-    "generations_core:red_poster",
-    "generations_core:red_poster_sprite",
-    "generations_core:red_scroll",
-    "generations_core:regional_award",
-    "generations_core:sea_poster",
-    "generations_core:sea_poster_sprite",
-    "generations_core:sky_poster",
-    "generations_core:sky_poster_sprite",
-    "generations_core:time_travel_award",
-    "generations_core:town_map_sprite"
+    "generations_core:red_poster"
   ]
 }

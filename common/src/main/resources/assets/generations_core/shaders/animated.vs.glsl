@@ -1,5 +1,7 @@
 #version 330 core
 #define MAX_BONES 220
+#define MINECRAFT_LIGHT_POWER   (0.6)
+#define MINECRAFT_AMBIENT_LIGHT (0.4)
 
 layout(location = 0) in vec3 positions;
 layout(location = 1) in vec2 texcoords;
@@ -10,8 +12,18 @@ layout(location = 4) in vec4 weights;
 out float vertexDistance;
 out vec4 vertexColor;
 out vec2 texCoord0;
+out vec3 fragNormal;
+out vec3 fragViewDir;
+out vec3 worldPos;
+out vec4 lightMapColor;
+
+uniform sampler2D lightmap;
+
+uniform bool legacy;
 
 uniform int FogShape;
+
+uniform ivec2 light;
 
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
@@ -33,25 +45,38 @@ mat4 getBoneTransform() {
     return boneTransform;
 }
 
-float fog_distance(mat4 modelViewMat, vec3 pos, int shape) {
+float fog_distance(vec3 pos, int shape) {
     if (shape == 0) {
-        return length((modelViewMat * vec4(pos, 1.0)).xyz);
+        return length(pos);
     } else {
-        float distXZ = length((modelViewMat * vec4(pos.x, 0.0, pos.z, 1.0)).xyz);
-        float distY = length((modelViewMat * vec4(0.0, pos.y, 0.0, 1.0)).xyz);
+        float distXZ = length(pos.xz);
+        float distY = abs(pos.y);
         return max(distXZ, distY);
     }
 }
 
-#vert
+vec4 getVertexColor() {
+    if(legacy) return vec4(1);
+
+    vec3 lightDir0 = normalize(Light0_Direction);
+    vec3 lightDir1 = normalize(Light1_Direction);
+    float light0 = max(0.0, dot(Light0_Direction, inNormal));
+    float light1 = max(0.0, dot(Light1_Direction, inNormal));
+    float lightAccum = min(1.0, (light0 + light1) * MINECRAFT_LIGHT_POWER + MINECRAFT_AMBIENT_LIGHT);
+    return vec4(lightAccum, lightAccum, lightAccum, 1);
+}
 
 void main() {
     mat4 worldSpace = projectionMatrix * viewMatrix;
     mat4 modelTransform = modelMatrix * getBoneTransform();
     vec4 worldPosition = modelTransform * vec4(positions, 1.0);
 
-    texCoord0 = (texcoords * uvScale) + uvOffset;
     gl_Position = worldSpace * worldPosition;
-    vertexDistance = fog_distance(worldSpace * modelTransform, positions, FogShape);
-    vertexColor = getVertexColor(Light0_Direction, Light1_Direction, inNormal);
+    vertexColor = getVertexColor();
+    vertexDistance = fog_distance(gl_Position.xyz, FogShape);
+    lightMapColor = texelFetch(lightmap, light / 16, 0);
+    texCoord0 = (texcoords * uvScale) + uvOffset;
+
+    fragViewDir = normalize(-(viewMatrix * worldPosition).xyz);
+    worldPos = worldPosition.xyz;
 }

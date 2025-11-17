@@ -10,9 +10,9 @@ import com.cobblemon.mod.common.util.asTranslated
 import com.cobblemon.mod.common.util.party
 import generations.gg.generations.core.generationscore.common.util.*
 import net.minecraft.ChatFormatting
+import net.minecraft.core.component.DataComponents
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
 import net.minecraft.world.entity.item.ItemEntity
@@ -33,7 +33,7 @@ class DnaSplicer(properties: Properties): PokemonStoringItem(properties) {
                     val list = mutableListOf<Component>()
                     list.add(pokemon)
                     stack.setLore(list)
-                    stack.setHoverName(super.getName(stack).copy() + getPokemonText(stack))
+                    stack.set(DataComponents.ITEM_NAME, super.getName(stack).copy().append(getPokemonText(stack)))
 
                     player.level().playSound(null, entity, SoundEvents.ENDERMAN_TELEPORT, SoundSource.MASTER, 1.0f, 1.0f)
 
@@ -54,7 +54,7 @@ class DnaSplicer(properties: Properties): PokemonStoringItem(properties) {
 
                 feature.value += 1
                 pokemon.markFeatureDirty(feature)
-                GenerationsItems.MEW_DNA_FIBER.get().defaultInstance.dropAsItemEntity(entity.level(), entity.position())
+                GenerationsItems.MEW_DNA_FIBER.value().defaultInstance.dropAsItemEntity(entity.level(), entity.position())
 
                 player.sendSystemMessage("generations_core.pokemon.extracted_dna_fiber_succeed".asTranslated(pokemon.getDisplayName().string))
 
@@ -65,6 +65,13 @@ class DnaSplicer(properties: Properties): PokemonStoringItem(properties) {
                 val provider = entity.pokemon.getProviderOrNull<ChoiceSpeciesFeatureProvider>("kyurem_form") ?: return false
                 val feature = provider.getOrCreate(entity.pokemon)
 
+                val moveToRemove = when (feature.value) {
+                    "black" -> "fusionbolt"
+                    "white" -> "fusionflare"
+                    else -> null
+                }
+
+                moveToRemove?.let { entity.pokemon.removeMove(it)}
                 feature.value = "false"
                 feature.apply(entity)
 
@@ -84,7 +91,6 @@ class DnaSplicer(properties: Properties): PokemonStoringItem(properties) {
 
             if (!entity.pokemon.hasEmbeddedPokemon()) {
                 if (feature.value.isBlank() || feature.value == "false") {
-
                     val form = if (pokemonInStack.isSpecies("zekrom")) {
                         "black"
                     } else if (pokemonInStack.isSpecies("reshiram")) {

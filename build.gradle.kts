@@ -37,6 +37,9 @@ subprojects {
         maven("https://jitpack.io")
         maven("https://maven.generations.gg/snapshots")
         maven("https://maven.generations.gg/releases")
+        maven("https://generationsmaven.firstdark.dev/snapshots")
+        maven("https://generationsmaven.firstdark.dev/releases")
+
         maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
         maven("https://cursemaven.com").content { includeGroup("curse.maven") }
         maven("https://api.modrinth.com/maven").content { includeGroup("maven.modrinth") }
@@ -70,15 +73,15 @@ subprojects {
     java {
         withSourcesJar()
 
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     tasks.withType<JavaCompile>().configureEach {
-        options.release.set(17)
+        options.release.set(21)
     }
 
-    kotlin.jvmToolchain(17)
+    kotlin.jvmToolchain(21)
 
     publishing {
         publications.create<MavenPublication>("mavenJava") {

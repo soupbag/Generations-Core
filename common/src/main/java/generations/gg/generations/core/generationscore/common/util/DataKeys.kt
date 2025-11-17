@@ -4,9 +4,9 @@ object DataKeys {
 
     const val GAVE_EGG = "GaveEgg"
     const val EMBEDDED_POKEMON = "EmbeddedPokemon"
-    const val DISTANCE = "Distance"
+    const val DISTANCE = "distance"
 
-    const val CLIENT_POKEMON_DATA = "ClientPokemonData"
+    const val CLIENT_POKEMON_DATA = "client_pokemon_data"
 
     //Statues
     const val PROPERTIES = "Properties"
@@ -24,7 +24,7 @@ object DataKeys {
     //Walkmon values
     const val DISC_HOLDER = "DiscHolder"
     const val DISCS = "Discs"
-    const val PLAYING = "Playing"
-    const val TIME_UNTIL_NEXT_SONG = "TimeUntilNextSong"
-    const val CURRENT_SLOT = "CurrentSlot"
+    const val PLAYING = "playing"
+    const val TIME_UNTIL_NEXT_SONG = "time_until_next_song"
+    const val CURRENT_SLOT = "current_slot"
 }

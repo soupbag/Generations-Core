@@ -1,6 +1,5 @@
 package generations.gg.generations.core.generationscore.common.client.render.rarecandy.loading;
 
-import gg.generations.rarecandy.assimp.*;
 import gg.generations.rarecandy.pokeutils.*;
 import gg.generations.rarecandy.renderer.animation.Animation;
 import gg.generations.rarecandy.renderer.animation.Skeleton;
@@ -14,7 +13,11 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
+import org.lwjgl.BufferUtils;
+import org.lwjgl.assimp.*;
+import org.lwjgl.system.MemoryUtil;
 
+import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
@@ -64,6 +67,9 @@ public class VanillaModelLoader {
             var fps = animResource.fps();
             fps = config.animationFpsOverride != null && config.animationFpsOverride.containsKey(name) ? config.animationFpsOverride.get(name) : fps;
 
+            var loops = animResource.loops();
+            loops = config.animationLoopsOverride != null && config.animationLoopsOverride.containsKey(name) ? config.animationLoopsOverride.get(name) : loops;
+
             var offsets = animResource.getOffsets();
             offsets.forEach((trackName, offset) -> config.getMaterialsForAnimation(trackName).forEach(a -> offSetsToInsert.put(a, offset)));
             offsets.putAll(offSetsToInsert);
@@ -72,7 +78,7 @@ public class VanillaModelLoader {
             var nodes = animResource.getNodes(skeleton);
             var ignoreScaling = config.ignoreScaleInAnimation != null && (config.ignoreScaleInAnimation.contains(name) || config.ignoreScaleInAnimation.contains("all"));
 
-            animations.put(name, new Animation(name, (int) fps, skeleton, nodes, offsets, ignoreScaling, config.offsets.getOrDefault(name, new SkeletalTransform()).scale(config.scale)));
+            animations.put(name, new Animation(name, (int) fps, loops, skeleton, nodes, offsets, ignoreScaling, config.offsets.getOrDefault(name, new SkeletalTransform()).scale(config.scale)));
         });
 
         return animations;
@@ -137,7 +143,7 @@ public class VanillaModelLoader {
                 }
             }
 
-            animResources.putIfAbsent(animName, new GenericAnimResource((long) fps, animationNodes));
+            animResources.putIfAbsent(animName, new GenericAnimResource((long) fps, false, animationNodes));
         }
     }
 

@@ -1,0 +1,208 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ability_patch"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:antidote"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:berry_juice"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:berry_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:calcium"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:chipped_pot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:dark_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:electirizer"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:electric_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:everstone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:exp_candy_m"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:fire_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:flame_orb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:flower_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:friend_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:galarica_wreath"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hondew_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:hp_up"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:ice_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:jaboca_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:light_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:love_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:love_sweet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:metronome"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:moon_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:pecha_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:persim_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:poke_ball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:potion"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:power_belt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sachet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sharp_beak"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:silk_scarf"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:starf_berry"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sticky_barb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:sweet_apple"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:tart_apple"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:toxic_orb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:saddle"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:quartz"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rabbit_hide"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_cat"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:serious_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:lonely_mint"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "cobblemon:brave_mint"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 1.0
+      }
+    }
+  ],
+  "random_sequence": "generations_core:chests/cherish_ball"
+}
