@@ -30,6 +30,8 @@ public class ItemStackComponentizationFixMixin {
             method = {"fixItemStack(Lnet/minecraft/util/datafix/fixes/ItemStackComponentizationFix$ItemStackData;Lcom/mojang/serialization/Dynamic;)V"},
             at = {@At("TAIL")})
     private static void fixItemStackAddition(ItemStackComponentizationFix.ItemStackData itemStackData, Dynamic<?> dynamic, CallbackInfo ci) {
+        itemStackData.removeTag("ClientPokemonData");
+
         if (itemStackData.item.startsWith("generationscore:pokemail_")) {
             fixMail(itemStackData, dynamic);
         }
@@ -41,8 +43,6 @@ public class ItemStackComponentizationFixMixin {
         if (itemStackData.is("generations_core:melody_flute")) {
             itemStackData.removeTag("imbued")
                     .map(GenerationsDataFixUtils::fixStack)
-                    .map(a -> a.renameField("Count", "amount"))
-                    .map(a -> a.createList(a.asStream()))
                     .ifSuccess(dynamic1 -> {
                         itemStackData.setComponent("generations_core:imbued", dynamic1);
                     });
@@ -54,16 +54,14 @@ public class ItemStackComponentizationFixMixin {
                 holder.get("Discs").map(GenerationsDataFixUtils::getDiscHolder).result().ifPresent(new Consumer<Dynamic<?>>() {
                     @Override
                     public void accept(Dynamic<?> dynamic) {
-                        itemStackData.setComponent("generations_core:inventory", dynamic);
+                        itemStackData.setComponent("minecraft:container", dynamic);
                         System.out.println("Discs: " + dynamic);
                     }
                 });
-                var newHolder = holder.emptyMap();
-                newHolder = newHolder.set("playing", holder.createBoolean(holder.get("Playing").asBoolean(false)));
-                newHolder = newHolder.set("current_slot", holder.createInt(holder.get("CurrentSlot").asInt(0)));
-                newHolder = newHolder.set("time_until_next_song", holder.createInt(holder.get("TimeUntilNextSong").asInt(0)));
-                newHolder = newHolder.set("title", holder.createString("Walkmon"));
-                itemStackData.setComponent("generations_core:walkmon_data", newHolder);
+                itemStackData.setComponent("generations_core:playing", holder.createBoolean(holder.get("Playing").asBoolean(false)));
+                itemStackData.setComponent("generations_core:current_slot", holder.createInt(holder.get("CurrentSlot").asInt(0)));
+                itemStackData.setComponent("generations_core:time_until_next_song", holder.createInt(holder.get("TimeUntilNextSong").asInt(0)));
+                itemStackData.setComponent("generations_core:title", holder.createString("Walkmon"));
             });
         }
 

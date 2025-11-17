@@ -5,12 +5,12 @@ import com.cobblemon.mod.common.api.types.tera.TeraTypes
 import org.joml.Vector3f
 
 private val TERA_TYPE_COLORS = mapOf(
-    TeraTypes.BUG to Vector3f(0.6f, 0.8f, 0.3f),
-    TeraTypes.DARK to Vector3f(0.2f, 0.2f, 0.25f),
-    TeraTypes.DRAGON to Vector3f(0.4f, 0.2f, 1f),
+    TeraTypes.BUG to Vector3f(0.612f, 1.0f, 0.294f),
+    TeraTypes.DARK to Vector3f(0.243f, 0.227f, 0.267f),
+    TeraTypes.DRAGON to Vector3f(0.31f, 0.39f, 1.0f),
     TeraTypes.ELECTRIC to Vector3f(1f, 1f, 0.3f),
-    TeraTypes.FAIRY to Vector3f(1f, 0.7f, 1f),
-    TeraTypes.FIGHTING to Vector3f(0.8f, 0.2f, 0.2f),
+    TeraTypes.FAIRY to Vector3f(1f, 0.6f, 1f),
+    TeraTypes.FIGHTING to Vector3f(1.0f, 0.251f, 0.251f),
     TeraTypes.FIRE to Vector3f(1f, 0.4f, 0.3f),
     TeraTypes.FLYING to Vector3f(0.6f, 0.8f, 1f),
     TeraTypes.GHOST to Vector3f(0.4f, 0.3f, 0.6f),
@@ -23,7 +23,7 @@ private val TERA_TYPE_COLORS = mapOf(
     TeraTypes.ROCK to Vector3f(0.6f, 0.5f, 0.3f),
     TeraTypes.STEEL to Vector3f(0.7f, 0.7f, 0.8f),
     TeraTypes.STELLAR to Vector3f(1.0f, 0.75f, 0.9f),
-    TeraTypes.WATER to Vector3f(0.2f, 0.5f, 1f)
+    TeraTypes.WATER to Vector3f(0.4f, 0.85f, 1.0f)
 )
 
 val ONE = Vector3f(1f,1f,1f);

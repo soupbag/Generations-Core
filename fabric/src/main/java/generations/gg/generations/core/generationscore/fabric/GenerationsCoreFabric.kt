@@ -9,6 +9,7 @@ import generations.gg.generations.core.generationscore.common.api.events.general
 import generations.gg.generations.core.generationscore.common.compat.ImpactorCompat
 import generations.gg.generations.core.generationscore.common.compat.VanillaCompat
 import generations.gg.generations.core.generationscore.common.config.ConfigLoader.setConfigDirectory
+import generations.gg.generations.core.generationscore.common.event.PlayerJoinHandler
 import generations.gg.generations.core.generationscore.common.generationsResource
 import generations.gg.generations.core.generationscore.common.util.EntryRegister
 import generations.gg.generations.core.generationscore.common.util.PlatformRegistry
@@ -32,6 +33,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents.ModifyEntriesAll
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry
@@ -146,6 +148,10 @@ object GenerationsCoreFabric : ModInitializer, GenerationsImplementation, PreLau
                 s2,
                 ResourcePackActivationType.DEFAULT_ENABLED
             )
+        }
+
+        ServerPlayConnectionEvents.JOIN.register { handler, sender, server ->
+            PlayerJoinHandler.onJoin(handler.player)
         }
 
         GenerationsConfiguredFeatures.init()

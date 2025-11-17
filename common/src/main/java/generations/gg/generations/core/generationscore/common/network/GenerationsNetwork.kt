@@ -1,8 +1,10 @@
 package generations.gg.generations.core.generationscore.common.network
 
 import com.cobblemon.mod.common.api.net.NetworkPacket
+import com.cobblemon.mod.common.client.net.pokemon.update.PokemonUpdatePacketHandler
 import com.cobblemon.mod.common.client.net.spawn.SpawnExtraDataEntityHandler
 import com.cobblemon.mod.common.net.PacketRegisterInfo
+import com.cobblemon.mod.common.net.messages.client.pokemon.update.TeraTypeUpdatePacket
 import com.cobblemon.mod.common.util.server
 import generations.gg.generations.core.generationscore.common.GenerationsCore
 import generations.gg.generations.core.generationscore.common.network.packets.*
@@ -30,6 +32,8 @@ object GenerationsNetwork {
     private fun generateS2CPacketInfoList(): List<PacketRegisterInfo<*>> {
         val list = mutableListOf<PacketRegisterInfo<*>>()
 
+        list.add(PacketRegisterInfo(BattleConditionsPacket.ID, BattleConditionsPacket::decode, BattleConditionsPacketHandler))
+        list.add(PacketRegisterInfo(GensInteractPokemonUIPacket.ID, GensInteractPokemonUIPacket::decode, GensInteractPokemonUIPacketHandler))
         list.add(PacketRegisterInfo(S2COpenMailEditScreenPacket.ID, S2COpenMailEditScreenPacket::decode, S2COpenMailEditScreenPacketHandler))
         list.add(PacketRegisterInfo(S2COpenMailPacket.ID, S2COpenMailPacket::decode, S2COpenMailPacketHandler))
         list.add(PacketRegisterInfo(S2CUnlockReloadPacket.ID, S2CUnlockReloadPacket::decode, UnlockReloadPacketHandler))
@@ -40,6 +44,8 @@ object GenerationsNetwork {
         list.add(PacketRegisterInfo(S2CSyncPlayerMoneyPacket.ID, ::S2CSyncPlayerMoneyPacket, S2CSyncPlayerMoneyHandler))
         list.add(PacketRegisterInfo(SpawnStatuePacket.ID, SpawnStatuePacket::decode, SpawnExtraDataEntityHandler()))
         list.add(PacketRegisterInfo(S2CPlaySoundPacket.ID, S2CPlaySoundPacket::decode, S2CPlaySoundHandler))
+        // TODO: remove TeraTypeUpdatePacket when its registered in Cobblemon's own network
+        list.add(PacketRegisterInfo(TeraTypeUpdatePacket.ID, TeraTypeUpdatePacket::decode, PokemonUpdatePacketHandler()))
 
         return list;
     }
@@ -47,7 +53,7 @@ object GenerationsNetwork {
     private fun generateC2SPacketInfoList(): MutableList<PacketRegisterInfo<*>> {
         val list = mutableListOf<PacketRegisterInfo<*>>()
 
-
+        list.add(PacketRegisterInfo(GensInteractPokemonPacket.ID, GensInteractPokemonPacket::decode, GensInteractPokemonHandler))
         list.add(PacketRegisterInfo(C2STogglePacket.ID, C2STogglePacket::decode, C2SToggleHandler))
         list.add(PacketRegisterInfo(C2SEditMailPacket.ID, C2SEditMailPacket::decode, C2SEditMailHandler))
         list.add(PacketRegisterInfo(C2SShopItemPacket.ID, C2SShopItemPacket::decode, C2SShopItemHandler))

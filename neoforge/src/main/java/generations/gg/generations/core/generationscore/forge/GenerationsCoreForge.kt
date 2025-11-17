@@ -12,6 +12,7 @@ import generations.gg.generations.core.generationscore.common.api.events.general
 import generations.gg.generations.core.generationscore.common.compat.ImpactorCompat
 import generations.gg.generations.core.generationscore.common.compat.VanillaCompat
 import generations.gg.generations.core.generationscore.common.config.ConfigLoader.setConfigDirectory
+import generations.gg.generations.core.generationscore.common.event.PlayerJoinHandler
 import generations.gg.generations.core.generationscore.common.util.EntryRegister
 import generations.gg.generations.core.generationscore.common.util.PlatformRegistry
 import generations.gg.generations.core.generationscore.common.util.extensions.supplier
@@ -49,6 +50,7 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension
 import net.neoforged.neoforge.common.util.TriState
 import net.neoforged.neoforge.event.*
 import net.neoforged.neoforge.event.entity.living.LivingEvent.LivingJumpEvent
+import net.neoforged.neoforge.event.entity.player.PlayerEvent
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.EntityInteract
 import net.neoforged.neoforge.registries.*
@@ -149,6 +151,13 @@ class GenerationsCoreForge(bus: IEventBus) : GenerationsImplementation {
                 if (result != InteractionResult.PASS) {
                     event.isCanceled = true
                     event.cancellationResult = result
+                }
+            }
+
+            addListener<PlayerEvent.PlayerLoggedInEvent> { event ->
+                val player = event.entity
+                if (player is ServerPlayer) {
+                    PlayerJoinHandler.onJoin(player)
                 }
             }
 

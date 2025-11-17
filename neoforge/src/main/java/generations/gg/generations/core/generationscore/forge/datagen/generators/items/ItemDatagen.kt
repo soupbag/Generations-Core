@@ -358,7 +358,6 @@ class ItemDatagen(packOutput: PackOutput, existingFileHelper: ExistingFileHelper
 
          */
         createItem(GenerationsItems.ROTOM_CATALOG, "player_items/")
-        createItem(GenerationsItems.POKEDEX, "player_items/")
         createItem(GenerationsItems.LURE_MODULE, "player_items/")
         createItem(GenerationsItems.BOTTLE_CAP, "player_items/")
         createItem(GenerationsItems.GOLD_BOTTLE_CAP, "player_items/")
@@ -859,6 +858,7 @@ class ItemDatagen(packOutput: PackOutput, existingFileHelper: ExistingFileHelper
         createItem(GenerationsItems.X_TRANSCEIVER_YELLOW, "unimplemented/")
         createItem(GenerationsItems.YELLOW_SCARF, "unimplemented/")
         createItem(GenerationsItems.STRANGE_BALL, "unimplemented/")
+
 
         createItem(GenerationsItems.TERA_BUG_SHARD, "tera_shards/")
         createItem(GenerationsItems.TERA_DARK_SHARD, "tera_shards/")

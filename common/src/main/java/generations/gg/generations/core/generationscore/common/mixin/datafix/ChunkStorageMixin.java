@@ -2,6 +2,7 @@ package generations.gg.generations.core.generationscore.common.mixin.datafix;
 
 import com.cobblemon.mod.common.datafixer.CobblemonSchemas;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import generations.gg.generations.core.generationscore.common.datafixer.GenerationsSchemas;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.datafix.DataFixTypes;
 import net.minecraft.world.level.chunk.storage.ChunkStorage;
@@ -24,6 +25,6 @@ public class ChunkStorageMixin {
         CompoundTag vanillaFixed
     ) {
         int curVersion = vanillaFixed.contains(VERSION_KEY) ? vanillaFixed.getInt(VERSION_KEY) : 0;
-        return DataFixTypes.CHUNK.update(CobblemonSchemas.getDATA_FIXER(), vanillaFixed, curVersion, CobblemonSchemas.DATA_VERSION);
+        return DataFixTypes.CHUNK.update(GenerationsSchemas.getDATA_FIXER(), vanillaFixed, curVersion, CobblemonSchemas.DATA_VERSION);
     }
 }

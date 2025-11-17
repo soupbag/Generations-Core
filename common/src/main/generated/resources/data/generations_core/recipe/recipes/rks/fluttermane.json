@@ -11,7 +11,7 @@
     },
     {
       "type": "generations_core:item",
-      "key": "minecraft:coal"
+      "items": "minecraft:coal"
     }
   ],
   "processingTime": 240,

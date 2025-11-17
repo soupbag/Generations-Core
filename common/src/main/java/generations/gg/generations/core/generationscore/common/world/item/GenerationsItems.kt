@@ -812,7 +812,6 @@ object GenerationsItems: ItemPlatformRegistry() {
     public static final RegistrySupplier<Item> PURPLE_BIKE = register("purple_bike", Item::new, PLAYER_ITEMS);
     */
     val ROTOM_CATALOG = register("rotom_catalog", ::RotomCatalog, PLAYER_ITEMS)
-    val POKEDEX = register("pokedex", ::Item, PLAYER_ITEMS)
     val LURE_MODULE = register("lure_module", ::Item, PLAYER_ITEMS)
     val BOTTLE_CAP = register("bottle_cap", ::Item, PLAYER_ITEMS)
     val GOLD_BOTTLE_CAP = register("gold_bottle_cap", ::Item, PLAYER_ITEMS)
@@ -873,7 +872,7 @@ object GenerationsItems: ItemPlatformRegistry() {
     val RELIC_SONG = createRelicSong(false)
     val INERT_RELIC_SONG = createRelicSong(true)
     val RED_CHAIN = register("red_chain", { RedChainItem(it.stacksTo(1)) }, LEGENDARY_ITEMS)
-    val DNA_SPLICERS = register("dna_splicers", { DnaSplicer(it) }, LEGENDARY_ITEMS)
+    val DNA_SPLICERS = register("dna_splicers", { DnaSplicer(it.stacksTo(1)) }, LEGENDARY_ITEMS)
     val REINS_OF_UNITY = register("reins_of_unity", { ReinsOfUnityItem(it.stacksTo(1)) }, LEGENDARY_ITEMS)
     val N_SOLARIZER = register("n_solarizer", { NecroizerItemItem(it, "solgaleo", "sunsteelstrike", "dusk") }, LEGENDARY_ITEMS)
     val N_LUNARIZER = register("n_lunarizer", { NecroizerItemItem(it, "lunala", "moongeistbeam", "dawn") }, LEGENDARY_ITEMS)

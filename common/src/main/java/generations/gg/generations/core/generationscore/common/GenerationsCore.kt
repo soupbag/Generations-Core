@@ -21,6 +21,8 @@ import generations.gg.generations.core.generationscore.common.api.player.Caught
 import generations.gg.generations.core.generationscore.common.client.render.rarecandy.instanceOrNull
 import generations.gg.generations.core.generationscore.common.config.Config
 import generations.gg.generations.core.generationscore.common.config.ConfigLoader.loadConfig
+import generations.gg.generations.core.generationscore.common.event.GenerationsArchitecturyEvents
+import generations.gg.generations.core.generationscore.common.event.GenerationsCobblemonEvents
 import generations.gg.generations.core.generationscore.common.recipe.GenerationsIngredidents
 import generations.gg.generations.core.generationscore.common.world.container.GenerationsContainers
 import generations.gg.generations.core.generationscore.common.world.entity.GenerationsEntities
@@ -198,7 +200,7 @@ object GenerationsCore {
     }
 
     fun processLootTable(lootId: ResourceLocation, lootTable: (LootPool.Builder) -> Unit) {
-        if (lootId.namespace == "minecraft" && lootId.path.contains("chests") && !lootId.path.contains("inject")) {
+        if (lootId.namespace == "minecraft" && lootId.path.contains("chests") && !lootId.path.contains("trial") && !lootId.path.contains("inject")) {
             val inject =
                 ResourceLocation.fromNamespaceAndPath(lootId.namespace, lootId.path.replace("chests", "chests/inject"))
             lootTable.invoke(
