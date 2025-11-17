@@ -8,11 +8,11 @@
     "key": {
       "A": {
         "type": "generations_core:item",
-        "items": "generations_core:heart_scale"
+        "key": "generations_core:heart_scale"
       },
       "B": {
         "type": "generations_core:item",
-        "items": "generations_core:orb"
+        "key": "generations_core:orb"
       }
     },
     "pattern": [

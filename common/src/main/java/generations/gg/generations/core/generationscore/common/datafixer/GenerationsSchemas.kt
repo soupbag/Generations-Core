@@ -34,7 +34,6 @@ object GenerationsSchemas {
         put("generations_core:utility_umbrella", "cobblemon:utility_umbrella")
         put("generations_core:wide_lens", "cobblemon:wide_lens")
         put("generations_core:zoom_lens", "cobblemon:zoom_lens")
-        put("generations_core:pokedex", "cobblemon:pokedex_red")
     }
 
     private val SAME: (Int, Schema) -> Schema = ::Schema
@@ -46,7 +45,9 @@ object GenerationsSchemas {
         val builder = DataFixerBuilder(DATA_VERSION)
         this.appendSchemas(builder)
         val types = hashSetOf<DSL.TypeReference>(
-            References.ENTITY)
+            References.ENTITY ,
+            GenerationsReferences.TERRAIUM_FORGE_INVENTORY,
+            GenerationsReferences.TERRAIUM_FABRIC_INVENTORY)
 
         val result = builder.build()
         if (types.isEmpty()) {
@@ -66,7 +67,6 @@ object GenerationsSchemas {
     private fun appendSchemas(builder: DataFixerBuilder) {
         builder.addSchema(0, ::GenerationsRootSchema)
         val v1 = builder.addSchema(1, ::Generationsv1Schema)
-        builder.addFixer(BotariumFix(v1))
 //        builder.addFixer(ItemRenameFix.create(v1, "Remove items from generations added in 1.6 cobblemon") { name ->
 //            print("Converted $name to ")
 //
@@ -76,5 +76,6 @@ object GenerationsSchemas {
 //            return@create newName
 //        })
         builder.addFixer(ItemStackComponentizationFix(v1))
+        builder.addFixer(BotariumFix(v1))
     }
 }

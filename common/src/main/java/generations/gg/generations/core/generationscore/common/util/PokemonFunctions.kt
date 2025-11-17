@@ -1,20 +1,15 @@
 package generations.gg.generations.core.generationscore.common.util
 
-import com.cobblemon.mod.common.Cobblemon.statProvider
 import com.cobblemon.mod.common.api.moves.Moves
 import com.cobblemon.mod.common.api.pokemon.feature.*
 import com.cobblemon.mod.common.api.pokemon.stats.Stat
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.cobblemon.mod.common.api.properties.CustomPokemonPropertyType
-import com.cobblemon.mod.common.api.scheduling.afterOnServer
 import com.cobblemon.mod.common.api.text.text
-import com.cobblemon.mod.common.item.PokemonItem
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.RenderablePokemon
 import com.cobblemon.mod.common.util.asTranslated
 import com.cobblemon.mod.common.util.server
-import generations.gg.generations.core.generationscore.common.client.PokemonItemRendererProxy
-import generations.gg.generations.core.generationscore.common.world.item.PokemonProvidingItem
 import generations.gg.generations.core.generationscore.common.world.item.StatueSpawnerItem
 import generations.gg.generations.core.generationscore.common.world.item.components.GenerationsDataComponents
 import net.minecraft.core.component.DataComponents
@@ -67,49 +62,28 @@ fun Pokemon.removeMove(moveName: String) {
 }
 
 fun Pokemon.replaceMove(oldMove: String, newMove: String) {
-    moveSet.getMovesWithNulls().forEachIndexed { index, move ->
-        if (move != null && move.template.name == oldMove) {
-            val ppRatio = if (move.maxPp > 0) move.currentPp.toFloat() / move.maxPp else 0f
-            val newMoveInstance = Moves.getByNameOrDummy(newMove).create().apply {
-                raisedPpStages = move.raisedPpStages
-                currentPp = (ppRatio * maxPp).toInt().coerceIn(0, maxPp)
-            }
-            moveSet.setMove(index, newMoveInstance)
+    for ((index, move) in moveSet.getMovesWithNulls().withIndex()) {
+        if (move != null && move.template.name.equals(oldMove)) {
+            val ppRatio = move.currentPp.toFloat() / move.maxPp
+            val newMoveMove = Moves.getByNameOrDummy(newMove).create()
+            newMoveMove.raisedPpStages = move.raisedPpStages
+            newMoveMove.currentPp = (ppRatio * newMoveMove.maxPp).toInt().coerceIn(0, newMoveMove.maxPp)
+            moveSet.setMove(index, newMoveMove)
+
+//            benchedMoves.doThenEmit {
+//                val iter = benchedMoves.iterator()
+//                while (iter.hasNext()) {
+//                    val benched = iter.next()
+//                    println("benched" + benched.moveTemplate.name)
+//                    if (benched.moveTemplate.name.equals(oldMove, ignoreCase = true)) {
+//                        iter.remove()
+//                    }
+//                }
+//            }
+
             return
         }
     }
-}
-
-fun Pokemon.applyCosmeticFeature(feature: SpeciesFeature) {
-    this.persistentData.putString("cosmetic_name", feature.name)
-    if(feature is StringSpeciesFeature) {
-        feature.apply(this)
-    } else {
-        (feature as FlagSpeciesFeature).apply(this)
-    }
-}
-
-fun Pokemon.removeCosmeticFeature() {
-    val data = this.persistentData
-
-    if (data.contains("cosmetic_name")) {
-        val name = data.getString("cosmetic_name").also { data.remove("cosmetic_name") }
-        if (this.species.name == "Necrozma") {
-            val feature: StringSpeciesFeature
-
-            if (this.persistentData.getString("prism_fusion") == "dusk") {
-                feature = StringSpeciesFeature("prism_fusion", "dusk")
-                feature.apply(this)
-            } else if (this.persistentData.getString("prism_fusion") == "dawn") {
-                feature = StringSpeciesFeature("prism_fusion", "dawn")
-                feature.apply(this)
-            }
-        } else {
-            features.removeIf { it.name == name }
-        }
-    }
-
-    updateAspects()
 }
 
 fun Pokemon.hasEmbeddedPokemon(): Boolean {
@@ -155,7 +129,7 @@ private fun Stat.color(): String {
 }
 
 private fun String.properCase(): String {
-    return this.get(0) + this.substring(1).lowercase()
+    return this.get(0) + this.substring(1).toLowerCase()
 }
 
 fun MutableList<Component>.add(pokemon: Pokemon) {
@@ -171,8 +145,8 @@ fun ItemStack.removePokemon() {
 }
 
 fun ItemStack.getRenderablePokemon(): RenderablePokemon? {
-    if(item is PokemonProvidingItem) {
-        return (item as PokemonProvidingItem).getSpeciesAndAspectsPair(this)?.let { RenderablePokemon(it.first, it.second) }
+    if(item is StatueSpawnerItem) {
+        return (item as StatueSpawnerItem).pokemon?.asRenderablePokemon() //TODO: See if this explodes.
     }
 
     return get(GenerationsDataComponents.EMBEDDED_POKEMON.value())?.asRenderablePokemon()
@@ -186,36 +160,8 @@ fun ItemStack.getPokemon(): Pokemon? {
     return get(GenerationsDataComponents.EMBEDDED_POKEMON.value())
 }
 
-fun Pokemon.fixIVS() {
-    println("Name: ${this.species.name}")
-    val special = isLegendary() || isUltraBeast() || species.name == "ursaluna-bloodmoon" || species.name in setOf(
-        "Gouging Fire",
-        "Raging Bolt",
-        "Walking Wake",
-        "Iron Boulder",
-        "Iron Crown",
-        "Iron Leaves"
-    )
-    if (!special) return
 
-    var perfectIvCounter = 0
-    ivs.forEach { stat ->
-        if (stat.value == 31) perfectIvCounter++
-    }
 
-    if (perfectIvCounter >= 3) {
-        return
-    }
-
-    val indices = (0..5).shuffled().take(3)
-    val permaStats: Collection<Stat> = statProvider.ofType(Stat.Type.PERMANENT)
-
-    for ((index, stat) in permaStats.withIndex()) {
-        if (indices.contains(index)) {
-            this.ivs[stat] = 31
-        }
-    }
-}
 
 fun Pokemon.removeIfBelongs(player: Player): Boolean {
     return belongsTo(player) && storeCoordinates.get()?.remove() == true

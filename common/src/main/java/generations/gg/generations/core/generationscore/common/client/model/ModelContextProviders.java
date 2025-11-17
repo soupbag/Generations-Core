@@ -1,8 +1,6 @@
 package generations.gg.generations.core.generationscore.common.client.model;
 
-import gg.generations.rarecandy.renderer.rendering.ObjectInstance;
 import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
@@ -34,5 +32,4 @@ public class ModelContextProviders {
     public interface TintProvider {
         @Nullable Vector3f getTint();
     }
-
 }

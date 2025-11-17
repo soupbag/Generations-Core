@@ -7,7 +7,6 @@ import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature
 import com.cobblemon.mod.common.api.text.bold
 import com.cobblemon.mod.common.api.text.text
 import com.cobblemon.mod.common.api.types.tera.TeraType
-import com.cobblemon.mod.common.api.types.tera.TeraTypes
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.CobblemonResources
 import com.cobblemon.mod.common.client.battle.ActiveClientBattlePokemon
@@ -50,10 +49,8 @@ import com.cobblemon.mod.common.client.render.models.blockbench.repository.Rende
 import com.cobblemon.mod.common.entity.PoseType
 import com.cobblemon.mod.common.entity.pokeball.EmptyPokeBallEntity
 import com.cobblemon.mod.common.pokemon.Gender
-import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.Species
 import com.cobblemon.mod.common.pokemon.status.PersistentStatus
-import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.lang
 import com.mojang.blaze3d.platform.Lighting
@@ -124,11 +121,10 @@ object BattleOverlayProxy {
             partialTicks = tickDelta,
             reversed = !left,
             species = battlePokemon.species,
-            pokemon = truePokemon,
             level = battlePokemon.level,
-            displayName = truePokemon?.nickname ?: battlePokemon.displayName,
+            displayName = battlePokemon.displayName,
             gender = battlePokemon.gender,
-            teraType = resolveTeraType(battlePokemon.state.currentAspects),
+            teraType = if (battlePokemon.state.currentAspects.contains("terastal_active")) truePokemon?.teraType else null,
             status = battlePokemon.status,
             state = battlePokemon.state,
             colour = Triple(r, g, b),
@@ -147,10 +143,6 @@ object BattleOverlayProxy {
             dexState = dexState,
             passedSeconds = passedSeconds
         )
-
-        if (GenerationsCoreClient.toggleConditions) {
-            BattleConditionsOverlay.renderConditionsOverlay(context)
-        }
     }
 
     fun drawBattleTile(
@@ -159,7 +151,6 @@ object BattleOverlayProxy {
         y: Float,
         partialTicks: Float,
         reversed: Boolean,
-        pokemon: Pokemon?,
         species: Species,
         level: Int,
         displayName: MutableComponent,
@@ -190,7 +181,7 @@ object BattleOverlayProxy {
         val portraitDiameter = if (isCompact) COMPACT_PORTRAIT_DIAMETER else PORTRAIT_DIAMETER
         val infoOffsetX = if (isCompact) COMPACT_INFO_OFFSET_X else INFO_OFFSET_X
         val portraitStartX = x + if (!reversed) portraitOffsetX else { tileWidth - portraitDiameter - portraitOffsetX }
-        val teraStartX = x + if (!reversed) teraXOffset else { tileWidth - teraDiameter - 61 }
+        val teraStartX = x + if (!reversed) teraXOffset else { tileWidth - teraDiameter - teraXOffset }
         val matrixStack = context.pose()
         blitk(
             matrixStack = matrixStack,
@@ -266,8 +257,6 @@ object BattleOverlayProxy {
                 partialTicks = partialTicks
             )
         }
-
-
         matrixStack.popPose()
         context.disableScissor()
 
@@ -424,6 +413,7 @@ object BattleOverlayProxy {
 
         TeraTypeIcon(
             teraStartX, teraYOffset, teraType, small = true, opacity = opacity
+
         ).render(context)
     }
 

@@ -7,7 +7,7 @@
     "key": {
       "A": {
         "type": "generations_core:item",
-        "items": "minecraft:netherite_scrap"
+        "key": "minecraft:netherite_scrap"
       },
       "B": {
         "type": "generations_core:time_capsule",
@@ -16,7 +16,7 @@
       },
       "X": {
         "type": "generations_core:item",
-        "items": "generations_core:z_ingot"
+        "key": "generations_core:z_ingot"
       }
     },
     "pattern": [

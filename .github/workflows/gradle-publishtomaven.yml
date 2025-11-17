@@ -10,7 +10,7 @@ name: Gradle Publish to Maven
 on:
   push:
     branches:
-      - terastalization-wip
+      - master
 
 jobs:
   gradle:
@@ -20,11 +20,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 21
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: adopt
-          java-version: 21
+          java-version: 17
           cache: gradle
 
       - name: Store gradle.properties secrets

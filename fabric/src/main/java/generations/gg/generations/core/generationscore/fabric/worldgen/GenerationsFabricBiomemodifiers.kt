@@ -65,7 +65,6 @@ object GenerationsFabricBiomemodifiers {
         registerUnderGroundOres(GenerationsPlacedFeatures.ORE_MEGASTONE)
         registerUnderGroundOres(GenerationsPlacedFeatures.ORE_Z_CRYSTAL)
         registerUnderGroundOres(GenerationsPlacedFeatures.ORE_METEORITE)
-        registerUnderGroundOres(GenerationsPlacedFeatures.ORE_TERASHARD)
 
         registerSurfaceFeatures(GenerationsPlacedFeatures.POKE_BALL_LOOT)
         registerSurfaceFeatures(GenerationsPlacedFeatures.BEAST_BALL_LOOT, BiomeSelectors.foundInTheEnd())

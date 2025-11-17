@@ -24,11 +24,8 @@ class RksRecipeExtension<T : RksRecipe> : IRksCategoryExtension<T> {
 
         val width = getWidth(recipeHolder)
         val height = getHeight(recipeHolder)
-        craftingGridHelper.createAndSetOutputs(builder, listOf(resultItem))
-
-        val inputs = recipe.getRksIngredients().map { it.matchingStacks() }.toList()
-
-        craftingGridHelper.createAndSetInputs(builder, inputs, width, height)
+        craftingGridHelper.createAndSetOutputs(builder, List.of(resultItem))
+        craftingGridHelper.createAndSetIngredients(builder, recipe.ingredients, width, height)
     }
 
     override fun getWidth(recipeHolder: RecipeHolder<T>): Int {

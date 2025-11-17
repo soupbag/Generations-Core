@@ -1,5 +1,5 @@
 {
-    "target": "cobblemon:basculin",
+    "target": "cobblemon:basculin_bluestriped",
     "behaviour": {
         "moving": {
             "swim": {

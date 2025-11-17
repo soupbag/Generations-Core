@@ -75,13 +75,15 @@ object GenerationsMolangFunctions {
                         val feature = pokemon.getOrCreateFeature(featureName) ?: return@Function DoubleValue.ZERO
 
                         when (feature) {
-                            is StringSpeciesFeature -> it.getStringOrNull(1)?.also { feature.value = it }?.also { feature.apply(pokemon) }
+                            is StringSpeciesFeature -> it.getStringOrNull(1)?.also {
+                                feature.value = it
+                            }?.also {
+                                feature.apply(pokemon)
+                            } ?: return@Function StringValue(feature.value)
                             is FlagSpeciesFeature -> it.getBooleanOrNull(1)?.also { feature.enabled = it }?.also { feature.apply(pokemon) }
                             is IntSpeciesFeature -> it.getIntOrNull(1)?.also { feature.value = it }?.also { feature.apply(pokemon) }
-                            else -> {}
+                            else -> return@Function DoubleValue.ZERO
                         }
-
-                        DoubleValue.ZERO
                     },
 
                     "remove_rotom_move" to Function {

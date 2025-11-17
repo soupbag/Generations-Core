@@ -22,7 +22,7 @@ class RksMachineContainer @JvmOverloads constructor(
     id: Int,
     protected var playerInventory: Inventory,
     protected var rksMachine: Container = SimpleContainer(10),
-    private val data: ContainerData = SimpleContainerData(3)
+    private val data: ContainerData = SimpleContainerData(4)
 ) : AbstractContainerMenu(GenerationsContainers.RKS_MACHINE.value(), id), Toggleable {
     init {
         rksMachine.instanceOrNull<RksMachineBlockEntity>()?.addMenu(this)
@@ -39,14 +39,13 @@ class RksMachineContainer @JvmOverloads constructor(
             }
         }
 
-        for (i in 2 downTo 0) {
-            for (j in 8 downTo 0) {
+        for (i in 0..2) {
+            for (j in 0..8) {
                 this.addSlot(Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18))
             }
         }
 
-// Player hotbar (reversed add order, same visual positions)
-        for (i in 8 downTo 0) {
+        for (i in 0..8) {
             this.addSlot(Slot(playerInventory, i, 8 + i * 18, 142))
         }
 
@@ -54,39 +53,41 @@ class RksMachineContainer @JvmOverloads constructor(
     }
 
     override fun quickMoveStack(player: Player, index: Int): ItemStack {
-        val slot = slots.getOrNull(index) ?: return ItemStack.EMPTY
-        if (!slot.hasItem()) return ItemStack.EMPTY
+        run {
+            var returnStack = ItemStack.EMPTY
+            val slot = slots[index]
+            if (slot != null && slot.hasItem()) {
+                val slotStack = slot.item
+                returnStack = slotStack.copy()
 
-        val stack = slot.item
-        val original = stack.copy()
+                if (index == 0 && isPokemonPresent) {
+                    slot.onTake(player, returnStack)
+                    slot.set(ItemStack.EMPTY)
+                    return ItemStack.EMPTY
+                }
 
-        val machineFirst = 0
-        val machineLast = 9
-        val playerFirst = 10
-        val playerLast = slots.lastIndex
+                val containerSlots = slots.size - player.inventory.containerSize
+                if (index < containerSlots) {
+                    if (!moveItemStackTo(slotStack, containerSlots, slots.size, true)) {
+                        return ItemStack.EMPTY
+                    }
+                } else if (!moveItemStackTo(slotStack, 0, containerSlots, false)) {
+                    return ItemStack.EMPTY
+                }
+                if (slotStack.count == 0) {
+                    slot.set(ItemStack.EMPTY)
+                } else {
+                    slot.setChanged()
+                }
 
-        if (index == 0) {
-            if (rksMachine.instanceOrNull<RksMachineBlockEntity>()?.lastRecipe?.value?.result?.isPokemon == true) {
-                slot.onTake(player, stack)
-                slot.set(ItemStack.EMPTY)
-                return ItemStack.EMPTY
-            } else {
-                if (!moveItemStackTo(stack, playerFirst, playerLast + 1, true)) return ItemStack.EMPTY
-                slot.onTake(player, stack)
-                if (stack.isEmpty) slot.set(ItemStack.EMPTY) else slot.setChanged()
-                return original
+                if (slotStack.count == returnStack.count) {
+                    return ItemStack.EMPTY
+                }
+                slot.onTake(player, slotStack)
             }
-        }
-
-        val (dstStart, dstEnd, reverse) =
-            if (index in machineFirst..machineLast) Triple(playerFirst, playerLast + 1, true)
-            else Triple(1, machineLast + 1, false)
-
-        if (!moveItemStackTo(stack, dstStart, dstEnd, reverse)) return ItemStack.EMPTY
-        if (stack.isEmpty) slot.set(ItemStack.EMPTY) else slot.setChanged()
-        return original
+            return returnStack
+        }  // end transferStackInSlot()
     }
-
 
     override fun stillValid(player: Player): Boolean {
         return rksMachine.stillValid(player)
@@ -104,7 +105,11 @@ class RksMachineContainer @JvmOverloads constructor(
     override var isToggled: Boolean
         get() = data[2] == 1
         set(value) { setData(2, if (value) 1 else 0) }
-    
+
+    val isPokemonPresent: Boolean
+        get() = data[3] == 1
+
+
     override fun removed(player: Player) {
         super.removed(player)
 
@@ -152,4 +157,17 @@ class RksMachineContainer @JvmOverloads constructor(
             )
         }
     }
+
+    companion object {
+        const val INPUT1_SLOT: Int = 0
+        const val INPUT2_SLOT: Int = 1
+        const val INPUT3_SLOT: Int = 2
+        const val OUTPUT_SLOT: Int = 3
+
+        const val DATA_WEAVE_TIME: Int = 0
+        const val DATA_WEAVE_TIME_TOAL: Int = 1
+        const val NUM_DATA_VALUES: Int = 2
+    }
+
+
 }

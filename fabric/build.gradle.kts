@@ -72,7 +72,7 @@ dependencies {
 
     //Cobblemon
     modApi("com.cobblemon:fabric:${project.properties["cobblemon_version"]}")
-    modApi("net.fabricmc:fabric-language-kotlin:1.13.2+kotlin.2.1.20")
+    modApi("net.fabricmc:fabric-language-kotlin:1.12.0+kotlin.2.0.10")
 //    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-$minecraftVersion:${project.properties["flywheel_fabric_version"]}")
 }
 
@@ -147,18 +147,26 @@ private fun getPublishingCredentials(): Pair<String?, String?> {
     return Pair(curseForgeToken, modrinthToken)
 }
 
-tasks.register("runMoveDataGenResourcesToCommon") {
+tasks.register("runMoveModels") {
     group = "loom"
     doLast {
         var root = projectDir.toPath().absolute().parent
 
-        val fabricModels = root.resolve("fabric/src/main/generated/").toFile()
-        val commonModels = root.resolve("common/src/main/generated/resources/").toFile()
+        val fabricModels = root.resolve("fabric/src/main/generated/assets/generations_core/models").toFile()
+        val commonModels = root.resolve("common/src/main//generated/resources/assets/generations_core/models").toFile()
 
-        commonModels.mkdirs()
+        if (fabricModels.exists()) {
 
-        fabricModels.copyRecursively(commonModels, overwrite = true)
-        fabricModels.deleteRecursively() // Remove the old models folder
-        println("Fabric DataGen resources to common.")
+            // Ensure the common models directory exists
+            commonModels.mkdirs()
+
+            // Move the folder (delete original after copying)
+            fabricModels.copyRecursively(commonModels, overwrite = true)
+            fabricModels.deleteRecursively() // Remove the old models folder
+
+            println("✅ Successfully moved models to common!")
+        } else {
+            println("⚠️ No models found in Fabric-generated resources! RunDatagen might have failed.")
+        }
     }
 }

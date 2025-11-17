@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BattleOverlay.class)
@@ -25,14 +24,12 @@ public abstract class BattleOverlayMixin {
 
     @Shadow public abstract double getOpacity();
 
-    @Redirect(
-            method = "render",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lcom/cobblemon/mod/common/client/gui/battle/BattleOverlay;drawTile(Lnet/minecraft/client/gui/GuiGraphics;FLcom/cobblemon/mod/common/client/battle/ActiveClientBattlePokemon;ZILcom/cobblemon/mod/common/api/pokedex/PokedexEntryProgress;ZZZ)V"
-            )
+    @Inject(
+            method = "drawTile",
+            at = @At("RETURN")
     )
-    private void redirectDrawTile(BattleOverlay instance, GuiGraphics context, float tickDelta, ActiveClientBattlePokemon pokemon, boolean left, int rank, PokedexEntryProgress dex, boolean hasCommand, boolean isHovered, boolean isCompact) {
-        BattleOverlayProxy.render(context, tickDelta, pokemon, left, rank, dex, hasCommand, isHovered, isCompact, instance.getPassedSeconds(), instance.getOpacity());
+    private void onDrawBattleTilePost(GuiGraphics context, float tickDelta, ActiveClientBattlePokemon activeBattlePokemon, boolean left, int rank, PokedexEntryProgress dexState, boolean hasCommand, boolean isHovered, boolean isCompact, CallbackInfo ci
+    ) {
+        BattleOverlayProxy.render(context, tickDelta, activeBattlePokemon, left, rank, dexState, hasCommand, isHovered, isCompact, getPassedSeconds(), getOpacity());
     }
 }
